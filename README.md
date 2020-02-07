@@ -1,2 +1,2 @@
-# debi
-proyecto debi
+# bot1
+App base

@@ -1,0 +1,1 @@
+Se modifico la DB se cambiaron las claves foraneas [modulo, submodulo, submodulo2] de la tabla accion a la tabla perfil_accion
