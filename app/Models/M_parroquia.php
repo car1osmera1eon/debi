@@ -61,5 +61,9 @@ class M_parroquia extends Model
         'codigo_nombre' => 'required'
     ];
 
+    public static function parroquias($id){
+        return M_parroquia::where('codigo_canton', '=', $id)->get();
+    }
+
     
 }

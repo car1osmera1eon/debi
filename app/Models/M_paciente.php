@@ -113,25 +113,20 @@ class M_paciente extends Model
      * @var array
      */
     public static $rules = [
-        'cedula' => 'required',
+        'cedula' => 'required|max:15',
         'pais_id' => 'required',
         'primernombre' => 'required',
         'primerapellido' => 'required',
-        'fecha_nacimiento' => 'required',
-        'lugar_nacimiento' => 'required',
+        'fecha_nacimiento' => 'required', 
         'edad' => 'required',
-        'sexo' => 'required',
-        'lugar_inscripcion' => 'required',
-        'nombres_madre' => 'required',
-        'nombres_padre' => 'required',
+        'sexo' => 'required', 
         'direccion' => 'required',
         'localidad' => 'required',
         'codigo_canton' => 'required',
         'codigo_provincia' => 'required',
-        'codigo_parroquia' => 'required',
-        'observaciones' => 'required',
+        'codigo_parroquia' => 'required', 
         'telefono' => 'required',
-        'email' => 'required'
+        'email' => 'required|email'
     ];
 
     /**

@@ -19,7 +19,7 @@
             <td>{{ $mPaciente->cedula }}</td> 
             <td>{{ $mPaciente->primernombre }} {{ $mPaciente->primerapellido }} {{ $mPaciente->segundoapellido }}</td>  
             <td>{{ $mPaciente->fecha_nacimiento }}</td> 
-            <td>{{ $mPaciente->sexo }}</td>  
+            <td>@if($mPaciente->sexo==1){{ 'Hombre' }} @else 'Mujer' @endif </td>  
             <td>{{ $mPaciente->telefono }}</td>
             <td>{{ $mPaciente->email }}</td>
                 <td>

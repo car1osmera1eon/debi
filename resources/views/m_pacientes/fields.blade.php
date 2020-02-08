@@ -124,7 +124,7 @@
 <!-- Codigo Parroquia Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('codigo_parroquia', 'Codigo Parroquia:') !!}
-    {!! Form::text('codigo_parroquia', null, ['class' => 'form-control']) !!}
+    {!! Form::select('codigo_parroquia', array(), null, ['class' => 'form-control', 'placeholder' => 'Seleccionar', 'id' => 'codigo_parroquia']) !!}
 </div>
 
 <!-- Observaciones Field -->

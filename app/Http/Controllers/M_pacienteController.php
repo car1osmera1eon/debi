@@ -15,6 +15,7 @@ use App\Models\M_tipo_identificacion;
 use App\Models\M_pais; 
 use App\Models\M_provincia; 
 use App\Models\M_canton; 
+use App\Models\M_parroquia; 
 use App\Submodulo; 
 
 
@@ -176,11 +177,11 @@ class M_pacienteController extends AppBaseController
         }
     }
 
-    // public function getParroquias(Request $request, $id){
-    //     if($request->ajax()){
-    //         $cantones = M_parroquia::cantones($id);
-    //         return response()->json($cantones);
-    //     }
-    // }
+    public function getParroquias(Request $request, $id){
+        if($request->ajax()){
+            $parroquias = M_parroquia::parroquias($id);
+            return response()->json($parroquias);
+        }
+    }
 
 }
