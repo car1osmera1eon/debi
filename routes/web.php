@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('products', 'ProductController');
+//Route::resource('products', 'ProductController');
 //Route::post('/products/consulta', 'ProductController@consulta');
 //Route::post('/products/store', 'ProductController@store');
 //Route::post('/products/remove', 'ProductController@remove');

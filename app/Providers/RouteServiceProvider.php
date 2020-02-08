@@ -46,6 +46,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapWebMaestros();
+
         //
     }
 
@@ -82,5 +84,12 @@ class RouteServiceProvider extends ServiceProvider
             ->as('api.')
             ->namespace($this->namespace."\\API")
             ->group(base_path('routes/api.php'));
+    }
+
+    protected function mapWebMaestros()
+    {
+        Route::middleware('web')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/maestros/web_maestros.php'));
     }
 }
