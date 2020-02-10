@@ -11,6 +11,8 @@ use Flash;
 use Response;
 use Session;
 
+use Carbon\Carbon;
+
 use App\Models\M_tipo_identificacion; 
 use App\Models\M_pais; 
 use App\Models\M_provincia; 
@@ -57,7 +59,9 @@ class M_pacienteController extends AppBaseController
         $tipo_ident     = M_tipo_identificacion::pluck('tipo_identificacion','id');
         $paises         = M_pais::pluck('nombre','id');
         $provincias     = M_provincia::pluck('nombre_m_provincia','codigo_m_provincia');
-        return view('m_pacientes.create', compact('tipo_ident', 'paises', 'provincias'));
+        $cantones       = array();
+        $parroquias     = array();
+        return view('m_pacientes.create', compact('tipo_ident', 'paises', 'provincias', 'cantones', 'parroquias'));
     }
 
     /**
@@ -115,7 +119,18 @@ class M_pacienteController extends AppBaseController
             return redirect(route('mPacientes.index'));
         }
 
-        return view('m_pacientes.edit')->with('mPaciente', $mPaciente);
+        $tipo_ident     = M_tipo_identificacion::pluck('tipo_identificacion','id');
+        $paises         = M_pais::pluck('nombre','id');
+        $provincias     = M_provincia::pluck('nombre_m_provincia','codigo_m_provincia');
+        $cantones       = M_canton::pluck('nombre_m_canton','codigo_m_canton');
+        $parroquias     = M_parroquia::pluck('nombre_m_parroquia','codigo_m_parroquia');
+
+        // $mPaciente = Carbon::createFromFormat('Y-m-d', $mPaciente)
+        // ->format(config('app.date_format'));
+        //dd($mPaciente);
+        return view('m_pacientes.edit', compact('mPaciente', 'tipo_ident', 'paises', 'provincias', 'cantones', 'parroquias'));
+
+        //return view('m_pacientes.edit')->with('mPaciente', $mPaciente);
     }
 
     /**

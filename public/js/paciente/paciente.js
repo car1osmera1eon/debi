@@ -19,3 +19,10 @@ $("#codigo_canton").change(function(event){
         }
     });
 });
+
+// $('#fecha_nacimiento').datepicker({ 
+// })
+
+$("#fecha_nacimiento").datetimepicker({
+    format:'YYYY-MM-DD'
+    });

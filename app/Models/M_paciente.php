@@ -5,6 +5,8 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Carbon\Carbon;
+
 /**
  * Class M_paciente
  * @package App\Models
@@ -132,9 +134,9 @@ class M_paciente extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function idTipoentificacion()
+    public function tipoIdentificacion()
     {
-        return $this->belongsTo(\App\Models\MTipoIdentificacion::class, 'id_tipo_identificacion');
+        return $this->belongsTo(\App\Models\M_tipo_identificacion::class, 'id_tipo_identificacion');
     }
 
     /**
@@ -142,6 +144,36 @@ class M_paciente extends Model
      **/
     public function pais()
     {
-        return $this->belongsTo(\App\Models\MPais::class, 'pais_id');
+        return $this->belongsTo(\App\Models\M_pais::class, 'pais_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function provincia()
+    {
+        return $this->belongsTo(\App\Models\M_provincia::class, 'codigo_provincia', 'codigo_m_provincia');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function canton()
+    {
+        return $this->belongsTo(\App\Models\M_canton::class, 'codigo_canton', 'codigo_m_canton');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function parroquia()
+    {
+        return $this->belongsTo(\App\Models\M_parroquia::class, 'codigo_parroquia', 'codigo_m_parroquia');
+    }
+
+    public function getEntryDateAttribute($input)
+    {
+        return Carbon::createFromFormat('Y-m-d', $input)
+        ->format(config('app.date_format'));
     }
 }

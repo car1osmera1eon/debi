@@ -67,7 +67,11 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Guayaquil',
+
+    'date_format_js' => 'yy-mm-dd',
+
+    'date_format' => 'm/d/Y',
 
     /*
     |--------------------------------------------------------------------------

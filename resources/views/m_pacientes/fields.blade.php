@@ -49,15 +49,16 @@
 <!-- Fecha Nacimiento Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('fecha_nacimiento', 'Fecha Nacimiento:') !!}
-    {!! Form::date('fecha_nacimiento', null, ['class' => 'form-control','id'=>'fecha_nacimiento']) !!}
+    {!! Form::text('fecha_nacimiento', null, ['class' => 'form-control','id'=>'fecha_nacimiento']) !!}
 </div>
 
 @section('scripts')
     <script type="text/javascript">
-        $('#fecha_nacimiento').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
-        })
+        // $('#fecha_nacimiento').datetimepicker({
+        //     //format: '{{ config('app.date_format_js') }}'
+        //     format: 'YYYY-MM-DD HH:mm:ss',
+        //     useCurrent: false
+        // });
     </script>
 @endsection
 
@@ -68,15 +69,15 @@
 </div>
 
 <!-- Edad Field -->
-<div class="form-group col-sm-6">
+{{-- <div class="form-group col-sm-6">
     {!! Form::label('edad', 'Edad:') !!}
     {!! Form::number('edad', null, ['class' => 'form-control']) !!}
-</div>
+</div> --}}
 
 <!-- Sexo Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('sexo', 'Sexo:') !!}
-    {!! Form::number('sexo', null, ['class' => 'form-control']) !!}
+    {!! Form::select('sexo', ['1'=>'Hombre', '2'=> 'Mujer'], null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Lugar Inscripcion Field -->
@@ -118,13 +119,13 @@
 <!-- Codigo Canton Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('codigo_canton', 'Codigo Canton:') !!}
-    {!! Form::select('codigo_canton', array(), null, ['class' => 'form-control', 'placeholder' => 'Seleccionar', 'id' => 'codigo_canton']) !!}
+    {!! Form::select('codigo_canton', $cantones, null, ['class' => 'form-control', 'placeholder' => 'Seleccionar', 'id' => 'codigo_canton']) !!}
 </div>
 
 <!-- Codigo Parroquia Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('codigo_parroquia', 'Codigo Parroquia:') !!}
-    {!! Form::select('codigo_parroquia', array(), null, ['class' => 'form-control', 'placeholder' => 'Seleccionar', 'id' => 'codigo_parroquia']) !!}
+    {!! Form::select('codigo_parroquia', $parroquias, null, ['class' => 'form-control', 'placeholder' => 'Seleccionar', 'id' => 'codigo_parroquia']) !!}
 </div>
 
 <!-- Observaciones Field -->
