@@ -1,10 +1,9 @@
-{{-- @extends('layouts.app') --}}
 @extends('layouts.main')
 
 @section('content')
     <section class="content-header">
         <h1>
-            Especialidad
+            Clinica
         </h1>
    </section>
    <div class="content">
@@ -12,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($especialidad, ['route' => ['especialidads.update', $especialidad->id], 'method' => 'patch']) !!}
+                   {!! Form::model($mClinica, ['route' => ['mClinicas.update', $mClinica->id], 'method' => 'PATCH', 'enctype' => 'multipart/form-data']) !!}
 
-                        @include('especialidads.fields')
+                        @include('m_clinicas.fields')
 
                    {!! Form::close() !!}
                </div>

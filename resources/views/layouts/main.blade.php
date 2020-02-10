@@ -80,7 +80,7 @@
                     <a href="index.html" class="navbar-brand">
                         <img src="{{ URL::asset('assets/img/logo.png') }}" alt="Nifty Logo" class="brand-icon">
                         <div class="brand-title">
-                            <span class="brand-text">Nifty</span>
+                            <span class="brand-text">{{ Session::get('nom_sistema')}}</span>
                         </div>
                     </a>
                 </div>

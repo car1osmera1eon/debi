@@ -33,8 +33,8 @@ class EspecialidadController extends AppBaseController
      */
     public function index(Request $request)
     { 
-        Menu::seleccionMenu('Especialidades');
-        $request->session()->put('submodulo', $subm->id);
+        Menu::seleccionMenu('Administracion del sistema', 'Especialidades'); 
+        $especialidads = $this->especialidadRepository->all();
         return view('especialidads.index')
             ->with('especialidads', $especialidads);
     }

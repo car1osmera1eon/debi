@@ -26,7 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $sistema = Sistema::find(1);
-        Session::put('nom_sistema', $sistema->nom_sistema ." | " . $sistema->des_sistema); 
+        Session::put('nom_sistema', $sistema->nom_sistema); 
+        Session::put('nom_sistema_des', $sistema->nom_sistema ." | " . $sistema->des_sistema); 
         return view('home');
     }
 }

@@ -38,3 +38,5 @@ Route::resource('permisos', 'PermisosController');
 Route::resource('perfilaccions', 'PerfilaccionController');
 Route::get('perfilaccions/submodulos/{id}', 'PerfilaccionController@getSubModulos');
 Route::get('perfilaccions/submodulos2/{id}', 'PerfilaccionController@getSubModulos2');
+
+Route::resource('mClinicas', 'M_clinicaController');
