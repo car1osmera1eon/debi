@@ -19,6 +19,7 @@ use App\Models\M_provincia;
 use App\Models\M_canton; 
 use App\Models\M_parroquia; 
 use App\Submodulo; 
+use App\Menu; 
 
 
 class M_pacienteController extends AppBaseController
@@ -39,10 +40,8 @@ class M_pacienteController extends AppBaseController
      * @return Response
      */
     public function index(Request $request)
-    {
-        $subm = Submodulo::where('nom_submodulo', 'Pacientes')->first();
-        Session::flash('submodulo', $subm->id);  
-
+    { 
+        Menu::seleccionMenu('Pacientes', null);
         $mPacientes = $this->mPacienteRepository->all();
 
         return view('m_pacientes.index')

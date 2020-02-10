@@ -7,7 +7,7 @@
         @foreach ($sistemas[$sistemas['sistema_id']] as $modulos) 
 
         <!--Menu list item-->
-        <li class="active-sub">
+        <li @if(Session::get('modulo')==$modulos['modulo_id'])  class="active-sub" @endif >
             <a href="#">
                 <i class="{{$modulos['icono']}}"></i>
                 <span class="menu-title">{{$modulos['nom_modulo']}}</span>
@@ -15,7 +15,7 @@
             </a>
 
             <!--Submenu-->
-            <ul class="collapse in">
+            <ul @if(Session::get('modulo')==$modulos['modulo_id'])  class="collapse in" @else  class="collapse" @endif>
                 @foreach ($modulos[$modulos['modulo_id']] as $sub)
                     @if(isset($sub[$sub['submodulo_id']]) and count($sub[$sub['submodulo_id']])==0)
                         <li @if(Session::get('submodulo')==$sub['submodulo_id']) class="active-link" @endif ><a href="{{route($sub['link'])}}">{{$sub['nom_submodulo']}} </a></li>
@@ -23,7 +23,7 @@
                     <li>
                         <a @if(Session::get('submodulo')==$sub['submodulo_id']) aria-expanded="true" @endif href="#">{{$sub['nom_submodulo']}}<i class="arrow"></i></a>
 
-                        <!--Submenu-->
+                        <!--Submenu2-->
                         <ul @if(Session::get('submodulo')==$sub['submodulo_id']) class="collapse in" aria-expanded="true" 
                             @else class="collapse" @endif >
                             @foreach ($sub[$sub['submodulo_id']] as $sub2)

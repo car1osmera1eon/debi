@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth; 
+use Session;
 use App\Menu;
 use App\Sistema;
 use App\Modulo;
@@ -155,5 +156,23 @@ class Menu extends Model
         }
         return $subm;
     }
+
+    public static function seleccionMenu($nomsubmenu, $nomsubmenu2=null)
+    {
+        Session::flash('modulo', "");  
+        Session::flash('submodulo', "");  
+        Session::flash('submodulo2', "");  
+        $subm = Submodulo::where('nom_submodulo', $nomsubmenu)->first();
+        Session::flash('modulo', $subm->modulo_id);  
+        Session::flash('submodulo', $subm->id);  
+        if($nomsubmenu2!=null){
+            $subm2 = Submodulo2::where('nom_submodulo2', $nomsubmenu2)->first();
+            Session::flash('submodulo2', $subm2->id);
+        }else{
+            Session::flash('submodulo2', ""); 
+        }
+        return true;
+    }
+ 
 
 }

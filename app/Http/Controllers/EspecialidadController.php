@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request; 
 use Session; 
 use App\Submodulo;
+use App\Menu;
 
 use Flash;
 use Response;
@@ -31,9 +32,8 @@ class EspecialidadController extends AppBaseController
      * @return Response
      */
     public function index(Request $request)
-    {
-        $especialidads = $this->especialidadRepository->all(); 
-        $subm = Submodulo::where('nom_submodulo', 'Especialidades')->first();
+    { 
+        Menu::seleccionMenu('Especialidades');
         $request->session()->put('submodulo', $subm->id);
         return view('especialidads.index')
             ->with('especialidads', $especialidads);

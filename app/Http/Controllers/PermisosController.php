@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Flash;
 use Response;
 use App\User;
+use App\Menu;
 use App\Models\Perfil;
 use App\Submodulo;
 use App\Submodulo2; 
@@ -35,11 +36,7 @@ class PermisosController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $subm = Submodulo::where('nom_submodulo', 'Permisos')->first();
-        $request->session()->put('submodulo', $subm->id); 
-
-        $subm2 = Submodulo2::where('nom_submodulo2', 'Perfil por usuario')->first();
-        $request->session()->put('submodulo2', $subm2->id); 
+        Menu::seleccionMenu('Permisos', 'Perfil por usuario');
 
         $permisos = $this->permisosRepository->all();
 

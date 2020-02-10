@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use Session; 
+use App\Menu;
 use App\Modulo;
 use App\Submodulo;
 use App\Submodulo2; 
@@ -36,12 +37,7 @@ class PerfilaccionController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $subm = Submodulo::where('nom_submodulo', 'Permisos')->first();
-        Session::flash('submodulo', $subm->id);  
-
-        $subm2 = Submodulo2::where('nom_submodulo2', 'Acciones por perfil')->first();
-        Session::flash('submodulo2', $subm2->id);
-
+        Menu::seleccionMenu('Permisos', 'Acciones por perfil');
         $perfilaccions = $this->perfilaccionRepository->all();
 
         return view('perfilaccions.index')

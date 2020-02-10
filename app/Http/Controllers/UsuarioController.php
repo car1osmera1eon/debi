@@ -13,6 +13,7 @@ use Flash;
 use Response;
 use Session; 
 use App\Submodulo;
+use App\Menu;
 
 class UsuarioController extends AppBaseController
 {
@@ -33,10 +34,8 @@ class UsuarioController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $usuarios = $this->usuarioRepository->all();  
-        
-        $subm = Submodulo::where('nom_submodulo', 'Usuarios')->first();
-        $request->session()->put('submodulo', $subm->id);
+        Menu::seleccionMenu('Usuarios');
+        $usuarios = $this->usuarioRepository->all();   
         return view('usuarios.index')
             ->with('usuarios', $usuarios);
     }
