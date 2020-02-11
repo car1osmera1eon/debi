@@ -23,12 +23,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::resource('usuarios', 'UsuarioController');
+
 Route::resource('especialidads', 'EspecialidadController');
 
 Route::get('usuarios/ver/{id}', 'UsuarioController@ver')->name('usuarios.ver');
+
 Route::get('usuarios/editar/{id}', 'UsuarioController@editar')->name('usuarios.editar');
+
 Route::match(['get', 'post'], 'usuarios/actualizar/{id}', 'UsuarioController@actualizar')->name('usuarios.actualizar'); 
 
 Route::resource('perfils', 'PerfilController');
@@ -36,5 +38,7 @@ Route::resource('perfils', 'PerfilController');
 Route::resource('permisos', 'PermisosController');
 
 Route::resource('perfilaccions', 'PerfilaccionController');
+
 Route::get('perfilaccions/submodulos/{id}', 'PerfilaccionController@getSubModulos');
+
 Route::get('perfilaccions/submodulos2/{id}', 'PerfilaccionController@getSubModulos2');

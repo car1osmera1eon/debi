@@ -18,37 +18,37 @@
 
 <!-- Nombre Corto Field -->
 <div class="form-group">
-    {!! Form::label('nombre_corto', 'Nombre Corto:') !!}
+    {!! Form::label('nombre_corto', 'Nombre Corto:', ['class' => 'text-bold']) !!}
     <p>{{ $mClinica->nombre_corto }}</p>
 </div>
 
 <!-- Provincia Id Field -->
 <div class="form-group">
-    {!! Form::label('provincia_id', 'Provincia:') !!}
+    {!! Form::label('provincia_id', 'Provincia:', ['class' => 'text-bold']) !!}
     <p>{{ $mClinica->provincia->nombre_m_provincia }}</p>
 </div>
 
 <!-- Direccion Field -->
 <div class="form-group">
-    {!! Form::label('direccion', 'Dirección:') !!}
+    {!! Form::label('direccion', 'Dirección:', ['class' => 'text-bold']) !!}
     <p>{{ $mClinica->direccion }}</p>
 </div>
 
 <!-- Email Field -->
 <div class="form-group">
-    {!! Form::label('email', 'Email:') !!}
+    {!! Form::label('email', 'Email:', ['class' => 'text-bold']) !!}
     <p>{{ $mClinica->email }}</p>
 </div>
 
 <!-- Telefono1 Field -->
 <div class="form-group">
-    {!! Form::label('telefono1', 'Telefono1:') !!}
+    {!! Form::label('telefono1', 'Telefono1:', ['class' => 'text-bold']) !!}
     <p>{{ $mClinica->telefono1 }}</p>
 </div>
 
 <!-- Telefono2 Field -->
 <div class="form-group">
-    {!! Form::label('telefono2', 'Telefono2:') !!}
+    {!! Form::label('telefono2', 'Telefono2:', ['class' => 'text-bold']) !!}
     <p>{{ $mClinica->telefono2 }}</p>
 </div>
 

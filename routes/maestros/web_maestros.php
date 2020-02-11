@@ -31,3 +31,5 @@ Route::get('mPacientes/cantones/{id}', 'M_pacienteController@getCantones');
 Route::get('mPacientes/parroquias/{id}', 'M_pacienteController@getParroquias'); 
 
 Route::resource('mClinicas', 'M_clinicaController');
+
+Route::resource('mMedicos', 'M_medicoController');

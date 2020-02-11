@@ -12,6 +12,7 @@ use Flash;
 use Response;
 use Session; 
 use App\Submodulo;
+use App\Menu;
 use App\Submodulo2;
 use App\Models\Perfil;
 use App\Models\Sistema; 
@@ -35,11 +36,7 @@ class PerfilController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $subm = Submodulo::where('nom_submodulo', 'Permisos')->first();
-        Session::flash('submodulo', $subm->id);  
-
-        $subm2 = Submodulo2::where('nom_submodulo2', 'Perfiles')->first();
-        Session::flash('submodulo2', $subm2->id);  
+        Menu::seleccionMenu('Permisos', 'Perfiles');
 
         $perfils = $this->perfilRepository->all();
         return view('perfils.index')
