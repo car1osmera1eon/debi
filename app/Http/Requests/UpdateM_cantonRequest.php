@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\M_canton;
+use App\Models\maestros\M_canton;
 
 class UpdateM_cantonRequest extends FormRequest
 {

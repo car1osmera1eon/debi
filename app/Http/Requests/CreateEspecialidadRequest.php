@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Especialidad;
+use App\Models\maestros\Especialidad;
 
 class CreateEspecialidadRequest extends FormRequest
 {
