@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\maestros;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -87,7 +87,7 @@ class M_clinica extends Model
      **/
     public function provincia()
     {
-        return $this->belongsTo(\App\Models\M_provincia::class, 'codigo_provincia', 'codigo_m_provincia');
+        return $this->belongsTo(\App\Models\maestros\M_provincia::class, 'codigo_provincia', 'codigo_m_provincia');
     }
     
 }

@@ -14,7 +14,7 @@
         <tbody>
         @foreach($perfilaccions as $perfilaccion)
             <tr>
-                <td>{{ $perfilaccion->perfil_id }}</td>
+                <td>{{ $perfilaccion->id }}</td>
                 <td>{{ $perfilaccion->perfil->nom_perfil }}</td>
                 <td>{{ $perfilaccion->accion->nom_accion }}</td>
                 <td>{{ $perfilaccion->modulo->nom_modulo }}</td>
@@ -33,4 +33,5 @@
         @endforeach
         </tbody>
     </table>
+    {{ $perfilaccions->links() }}
 </div>

@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\M_tipo_identificacion;
+use App\Models\maestros\M_tipo_identificacion;
 use App\Repositories\BaseRepository;
 
 /**

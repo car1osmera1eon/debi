@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\perfiles;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -74,7 +74,7 @@ class Perfilaccion extends Model
      **/
     public function accion()
     {
-        return $this->belongsTo(\App\Accion::class, 'accion_id');
+        return $this->belongsTo(\App\Models\perfiles\Accion::class, 'accion_id');
     }
 
     /**
@@ -82,7 +82,7 @@ class Perfilaccion extends Model
      **/
     public function perfil()
     {
-        return $this->belongsTo(\App\Models\Perfil::class, 'perfil_id');
+        return $this->belongsTo(\App\Models\perfiles\Perfil::class, 'perfil_id');
     }
 
     /**
@@ -90,7 +90,7 @@ class Perfilaccion extends Model
      **/
     public function submodulo2()
     {
-        return $this->belongsTo(\App\Submodulo2::class, 'submodulo2_id');
+        return $this->belongsTo(\App\Models\perfiles\Submodulo2::class, 'submodulo2_id');
     }
 
     /**
@@ -98,7 +98,7 @@ class Perfilaccion extends Model
      **/
     public function submodulo()
     {
-        return $this->belongsTo(\App\Submodulo::class, 'submodulo_id');
+        return $this->belongsTo(\App\Models\perfiles\Submodulo::class, 'submodulo_id');
     }
 
     /**
@@ -106,6 +106,6 @@ class Perfilaccion extends Model
      **/
     public function modulo()
     {
-        return $this->belongsTo(\App\Modulo::class, 'modulo_id');
+        return $this->belongsTo(\App\Models\perfiles\Modulo::class, 'modulo_id');
     }
 }

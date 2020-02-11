@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\M_pais;
+use App\Models\maestros\M_pais;
 
 class CreateM_paisRequest extends FormRequest
 {

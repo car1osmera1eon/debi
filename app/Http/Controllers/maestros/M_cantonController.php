@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 
-use App\Models\M_canton;
+use App\Models\maestros\M_canton;
 
 class M_cantonController extends AppBaseController
 {

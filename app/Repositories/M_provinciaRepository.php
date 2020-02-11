@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\M_provincia;
+use App\Models\maestros\M_provincia;
 use App\Repositories\BaseRepository;
 
 /**

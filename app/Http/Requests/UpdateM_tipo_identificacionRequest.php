@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\M_tipo_identificacion;
+use App\Models\maestros\M_tipo_identificacion;
 
 class UpdateM_tipo_identificacionRequest extends FormRequest
 {

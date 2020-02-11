@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\M_parroquia;
+use App\Models\maestros\M_parroquia;
 
 class UpdateM_parroquiaRequest extends FormRequest
 {

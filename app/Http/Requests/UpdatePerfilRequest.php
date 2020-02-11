@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Perfil;
+use App\Models\perfiles\Perfil;
 
 class UpdatePerfilRequest extends FormRequest
 {

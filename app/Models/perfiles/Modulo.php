@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models\perfiles;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Accion extends Model
+class Modulo extends Model
 {
     //
 }

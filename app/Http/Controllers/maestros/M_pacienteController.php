@@ -13,11 +13,11 @@ use Session;
 
 use Carbon\Carbon;
 
-use App\Models\M_tipo_identificacion; 
-use App\Models\M_pais; 
-use App\Models\M_provincia; 
-use App\Models\M_canton; 
-use App\Models\M_parroquia; 
+use App\Models\maestros\M_tipo_identificacion; 
+use App\Models\maestros\M_pais; 
+use App\Models\maestros\M_provincia; 
+use App\Models\maestros\M_canton; 
+use App\Models\maestros\M_parroquia; 
 use App\Submodulo; 
 use App\Menu; 
 

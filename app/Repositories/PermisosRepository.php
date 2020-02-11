@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Permisos;
+use App\Models\perfiles\Permisos;
 use App\Repositories\BaseRepository;
 
 /**

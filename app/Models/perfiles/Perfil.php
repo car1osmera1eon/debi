@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\perfiles;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -62,7 +62,7 @@ class Perfil extends Model
      **/
     public function sistema()
     {
-        return $this->belongsTo(\App\Models\Sistema::class, 'sistema_id');
+        return $this->belongsTo(\App\Models\perfiles\Sistema::class, 'sistema_id');
     }
 
     /**
@@ -70,7 +70,7 @@ class Perfil extends Model
      **/
     public function perfilAccions()
     {
-        return $this->hasMany(\App\Models\PerfilAccion::class, 'perfil_id');
+        return $this->hasMany(\App\Models\perfiles\PerfilAccion::class, 'perfil_id');
     }
 
     /**
@@ -78,6 +78,6 @@ class Perfil extends Model
      **/
     public function perfilUsuarios()
     {
-        return $this->hasMany(\App\Models\PerfilUsuario::class, 'perfil_id');
+        return $this->hasMany(\App\Models\perfiles\PerfilUsuario::class, 'perfil_id');
     }
 }

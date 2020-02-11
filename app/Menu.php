@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth; 
 use Session;
 use App\Menu;
-use App\Sistema;
-use App\Modulo;
-use App\Submodulo;
-use App\Perfill_usuario;
+use App\Models\perfiles\Sistema;
+use App\Models\perfiles\Modulo;
+use App\Models\perfiles\Submodulo;
+use App\Models\perfiles\Perfill_usuario;
+use App\Models\perfiles\Submodulo2;
 
 
 class Menu extends Model

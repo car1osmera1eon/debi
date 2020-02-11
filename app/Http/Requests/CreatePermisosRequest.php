@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Permisos;
+use App\Models\perfiles\Permisos;
 
 class CreatePermisosRequest extends FormRequest
 {

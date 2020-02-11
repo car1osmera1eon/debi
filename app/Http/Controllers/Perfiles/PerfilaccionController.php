@@ -11,12 +11,13 @@ use Flash;
 use Response;
 use Session; 
 use App\Menu;
-use App\Modulo;
-use App\Submodulo;
-use App\Submodulo2; 
-use App\Accion; 
-use App\Models\Sistema; 
-use App\Models\Perfil; 
+use App\Models\perfiles\Modulo;
+use App\Models\perfiles\Submodulo;
+use App\Models\perfiles\Submodulo2; 
+use App\Models\perfiles\Accion; 
+use App\Models\perfiles\Sistema; 
+use App\Models\perfiles\Perfil; 
+use App\Models\perfiles\Perfilaccion; 
 
 class PerfilaccionController extends AppBaseController
 {
@@ -39,6 +40,7 @@ class PerfilaccionController extends AppBaseController
     {
         Menu::seleccionMenu('Permisos', 'Acciones por perfil');
         $perfilaccions = $this->perfilaccionRepository->all();
+        $perfilaccions = Perfilaccion::orderBy('id', 'DESC')->paginate(5);
 
         return view('perfilaccions.index')
             ->with('perfilaccions', $perfilaccions);

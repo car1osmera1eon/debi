@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\DB;
 use Flash;
 use Response;
 use Session; 
-use App\Submodulo;
+use App\Models\perfiles\Submodulo;
 use App\Menu;
-use App\Submodulo2;
-use App\Models\Perfil;
-use App\Models\Sistema; 
+use App\Models\perfiles\Submodulo2;
+use App\Models\perfiles\Perfil;
+use App\Models\perfiles\Sistema; 
 
 class PerfilController extends AppBaseController
 {

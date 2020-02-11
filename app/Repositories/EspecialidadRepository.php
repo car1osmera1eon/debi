@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Especialidad;
+use App\Models\maestros\Especialidad;
 use App\Repositories\BaseRepository;
 
 /**

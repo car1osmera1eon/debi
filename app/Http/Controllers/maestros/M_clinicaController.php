@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use App\Menu;
-use App\Models\M_provincia;
+use App\Models\maestros\M_provincia;
 
 class M_clinicaController extends AppBaseController
 {

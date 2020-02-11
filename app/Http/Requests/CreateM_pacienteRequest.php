@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\M_paciente;
+use App\Models\maestros\M_paciente;
 
 class CreateM_pacienteRequest extends FormRequest
 {

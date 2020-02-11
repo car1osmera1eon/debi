@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\maestros;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -79,6 +79,6 @@ class M_medico extends Model
      **/
     public function especialidad()
     {
-        return $this->belongsTo(\App\Models\Especialidad::class, 'especialidad_id');
+        return $this->belongsTo(\App\Models\maestros\Especialidad::class, 'especialidad_id');
     }
 }

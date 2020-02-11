@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Perfil;
+use App\Models\perfiles\Perfil;
 use App\Repositories\BaseRepository;
 
 /**

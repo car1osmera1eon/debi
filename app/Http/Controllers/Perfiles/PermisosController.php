@@ -12,10 +12,10 @@ use Flash;
 use Response;
 use App\User;
 use App\Menu;
-use App\Models\Perfil;
-use App\Submodulo;
-use App\Submodulo2; 
-use App\Models\Sistema; 
+use App\Models\perfiles\Perfil;
+use App\Models\perfiles\Submodulo;
+use App\Models\perfiles\Submodulo2; 
+use App\Models\perfiles\Sistema; 
 
 class PermisosController extends AppBaseController
 {

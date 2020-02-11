@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\perfiles;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -61,7 +61,7 @@ class Permisos extends Model
      **/
     public function perfil()
     {
-        return $this->belongsTo(\App\Perfil::class, 'perfil_id');
+        return $this->belongsTo(\App\Models\perfiles\Perfil::class, 'perfil_id');
     }
 
     /**

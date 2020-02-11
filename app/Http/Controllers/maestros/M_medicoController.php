@@ -11,7 +11,7 @@ use Flash;
 use Response;
 use App\Menu;
 use App\Models\Usuario;
-use App\Models\Especialidad;
+use App\Models\maestros\Especialidad;
 
 
 class M_medicoController extends AppBaseController
@@ -108,7 +108,10 @@ class M_medicoController extends AppBaseController
             return redirect(route('mMedicos.index'));
         }
 
-        return view('m_medicos.edit')->with('mMedico', $mMedico);
+        $usuarios           = Usuario::pluck('name','id');
+        $especialidades     = Especialidad::pluck('nombre','id');
+
+        return view('m_medicos.edit', compact('mMedico','usuarios','especialidades'));
     }
 
     /**
