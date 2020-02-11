@@ -127,10 +127,11 @@ class Menu extends Model
             ->where('sm.modulo_id', $mo['modulo_id']) 
             ->orderBy('sm.orden')
             ->distinct('sm.id')->get();
-
+            $submodulos = array();
             foreach($objsubm as $key => $value){    $submodulos[$key] = (array) $value;    }
             $submodulos = $this->getSubmodulo2($submodulos);
             $mo[$mo["modulo_id"]] = $submodulos;
+            
             $subm[] = $mo;
         }
         return $subm;
@@ -146,7 +147,7 @@ class Menu extends Model
             ->join('perfil_accions as pa',      'pa.submodulo2_id', 'sm.id')
             ->select('sm.id as submodulo2_id',   'sm.nom_submodulo2', 'sm.icono', 'sm.link')  
             ->where('sm.estado', '<>', 0) 
-            ->where('sm.submodulo_id', $sb['submodulo_id']) 
+            ->where('pa.submodulo_id', $sb['submodulo_id']) 
             ->orderBy('sm.orden')
             ->distinct('sm.id')->get();
 

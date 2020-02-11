@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\maestros;
 
 use App\Http\Requests\CreateM_clinicaRequest;
 use App\Http\Requests\UpdateM_clinicaRequest;

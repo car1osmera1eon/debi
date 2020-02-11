@@ -25,20 +25,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('usuarios', 'UsuarioController');
 
-Route::resource('especialidads', 'EspecialidadController');
-
 Route::get('usuarios/ver/{id}', 'UsuarioController@ver')->name('usuarios.ver');
 
 Route::get('usuarios/editar/{id}', 'UsuarioController@editar')->name('usuarios.editar');
 
 Route::match(['get', 'post'], 'usuarios/actualizar/{id}', 'UsuarioController@actualizar')->name('usuarios.actualizar'); 
 
-Route::resource('perfils', 'PerfilController');
+Route::resource('perfils', 'Perfiles\PerfilController');
 
-Route::resource('permisos', 'PermisosController');
+Route::resource('permisos', 'Perfiles\PermisosController');
 
-Route::resource('perfilaccions', 'PerfilaccionController');
+Route::resource('perfilaccions', 'Perfiles\PerfilaccionController');
 
-Route::get('perfilaccions/submodulos/{id}', 'PerfilaccionController@getSubModulos');
+Route::get('perfilaccions/submodulos/{id}', 'Perfiles\PerfilaccionController@getSubModulos');
 
-Route::get('perfilaccions/submodulos2/{id}', 'PerfilaccionController@getSubModulos2');
+Route::get('perfilaccions/submodulos2/{id}', 'Perfiles\PerfilaccionController@getSubModulos2');

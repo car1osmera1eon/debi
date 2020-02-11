@@ -10,26 +10,26 @@
 | contains the "web" middleware group. Now create something great!
 |
 */ 
+Route::resource('especialidads', 'maestros\EspecialidadController');
 
-Route::resource('products', 'ProductController');
-//Route::post('/products/consulta', 'ProductController@consulta');
-//Route::post('/products/store', 'ProductController@store');
-//Route::post('/products/remove', 'ProductController@remove'); 
+Route::resource('products', 'maestros\ProductController'); 
 
-Route::resource('mTipoIdentificacions', 'M_tipo_identificacionController');
+Route::resource('mTipoIdentificacions', 'maestros\M_tipo_identificacionController');
 
-Route::resource('mPais', 'M_paisController');Route::resource('mProvincias', 'M_provinciaController');
+Route::resource('mPais', 'maestros\M_paisController');
 
-Route::resource('mCantons', 'M_cantonController');
+Route::resource('mProvincias', 'maestros\M_provinciaController');
 
-Route::resource('mParroquias', 'M_parroquiaController');
+Route::resource('mCantons', 'maestros\M_cantonController');
 
-Route::resource('mPacientes', 'M_pacienteController');
+Route::resource('mParroquias', 'maestros\M_parroquiaController');
 
-Route::get('mPacientes/cantones/{id}', 'M_pacienteController@getCantones'); 
+Route::resource('mPacientes', 'maestros\M_pacienteController');
 
-Route::get('mPacientes/parroquias/{id}', 'M_pacienteController@getParroquias'); 
+Route::get('mPacientes/cantones/{id}', 'maestros\M_pacienteController@getCantones'); 
 
-Route::resource('mClinicas', 'M_clinicaController');
+Route::get('mPacientes/parroquias/{id}', 'maestros\M_pacienteController@getParroquias'); 
 
-Route::resource('mMedicos', 'M_medicoController');
+Route::resource('mClinicas', 'maestros\M_clinicaController');
+
+Route::resource('mMedicos', 'maestros\M_medicoController');

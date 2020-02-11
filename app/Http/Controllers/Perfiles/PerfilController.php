@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Perfiles;
 
 use App\Http\Requests\CreatePerfilRequest;
 use App\Http\Requests\UpdatePerfilRequest;

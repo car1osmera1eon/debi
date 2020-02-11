@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\maestros;
 
 use App\Http\Requests\CreateEspecialidadRequest;
 use App\Http\Requests\UpdateEspecialidadRequest;

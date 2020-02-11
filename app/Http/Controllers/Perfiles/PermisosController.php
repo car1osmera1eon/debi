@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Perfiles;
 
 use App\Http\Requests\CreatePermisosRequest;
 use App\Http\Requests\UpdatePermisosRequest;
