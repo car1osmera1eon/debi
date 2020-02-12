@@ -9,6 +9,8 @@
 
     <title>{{ Session::get('nom_sistema')}}</title>
 
+    <link rel="icon" href="{{ URL::asset('assets/img/roboto.png') }}">
+
 
     <!--STYLESHEET-->
     <!--=================================================-->
@@ -78,7 +80,7 @@
                 <!--================================-->
                 <div class="navbar-header">
                     <a href="index.html" class="navbar-brand">
-                        <img src="{{ URL::asset('assets/img/logo.png') }}" alt="Nifty Logo" class="brand-icon">
+                        <img src="{{ URL::asset('assets/img/roboto.png') }}" alt="Logo Empresa" class="brand-icon">
                         <div class="brand-title">
                             <span class="brand-text">{{ Session::get('nom_sistema')}}</span>
                         </div>
@@ -485,22 +487,21 @@
                     
 					<hr class="new-section-sm bord-no">
 					<div class="row">
-					    <div class="col-lg-12">
-					        <div class="panel panel-body">
-                                
-                                <div class="panel-body">
-                                    @yield('content')
-					                {{-- <h3>Your content here...</h3>
-					                <br>
-					                <a href="index.html" class="btn btn-dark">Back</a>
-					                <br><br><br>
-					                <h3>Quick Tips</h3>
-					                <p>You may remove all ID or Class names which contain <code>demo-</code>, they are only used for demonstration.</p>
-					                <br> --}}
-                                </div>
+                        @if(isset($home))
+                            @yield('content')
+                        @else
+                            <div class="col-lg-12">
+                                <div class="panel panel-body">
+                                    
+                                    <div class="panel-body"> 
+                                        @yield('content')
+                                    </div>
 
-					        </div>
-					    </div>
+                                </div>
+                            </div>
+                        @endif
+                        
+					    
                     </div>  
 					<!-- ==================================================================== -->
 					<!-- END QUICK TIPS -->

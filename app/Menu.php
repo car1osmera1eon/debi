@@ -10,7 +10,7 @@ use App\Menu;
 use App\Models\perfiles\Sistema;
 use App\Models\perfiles\Modulo;
 use App\Models\perfiles\Submodulo;
-use App\Models\perfiles\Perfill_usuario;
+use App\Models\perfiles\Perfil_usuario;
 use App\Models\perfiles\Submodulo2;
 
 

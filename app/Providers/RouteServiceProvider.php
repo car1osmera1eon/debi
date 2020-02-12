@@ -48,6 +48,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebMaestros();
 
+        $this->mapWebAgenda();
         //
     }
 
@@ -91,5 +92,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
         ->namespace($this->namespace)
         ->group(base_path('routes/maestros/web_maestros.php'));
+    }
+
+    protected function mapWebAgenda()
+    {
+        Route::middleware('web')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/agenda/web_agenda.php'));
     }
 }

@@ -12,7 +12,7 @@
 */ 
 Route::resource('especialidads', 'maestros\EspecialidadController');
 
-Route::resource('products', 'maestros\ProductController'); 
+//Route::resource('products', 'maestros\ProductController'); 
 
 Route::resource('mTipoIdentificacions', 'maestros\M_tipo_identificacionController');
 
@@ -33,3 +33,7 @@ Route::get('mPacientes/parroquias/{id}', 'maestros\M_pacienteController@getParro
 Route::resource('mClinicas', 'maestros\M_clinicaController');
 
 Route::resource('mMedicos', 'maestros\M_medicoController');
+
+Route::resource('mProcedimientos', 'maestros\M_procedimientoController');
+
+Route::resource('mConsultorios', 'maestros\M_consultorioController');

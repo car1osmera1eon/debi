@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; 
 use Session;
 use App\Models\perfiles\Sistema;
+use App\Models\Usuario;
+use App\Models\perfiles\Perfil_usuario;
+use App\Models\maestros\M_medico;
 
 class HomeController extends Controller
 {
@@ -27,7 +31,17 @@ class HomeController extends Controller
     {
         $sistema = Sistema::find(1);
         Session::put('nom_sistema', $sistema->nom_sistema); 
-        Session::put('nom_sistema_des', $sistema->nom_sistema ." | " . $sistema->des_sistema); 
-        return view('home');
+        Session::put('nom_sistema_des', $sistema->nom_sistema ." | " . $sistema->des_sistema);
+        $medicos = M_medico::all();
+        $home = 1;
+        $perfiles = Perfil_usuario::getPerfilUsuario(Auth::user()->id);
+        if(in_array('ADM',$perfiles)){
+            return view('home.index', compact('home', 'sistema', 'medicos'));
+        }elseif(in_array('DOC',$perfiles)){
+            $medicos = M_medico::find(Auth::user()->id);
+            return view('home.index', compact('home', 'sistema', 'medicos'));
+        }else{
+            return view('home.index', compact('home', 'sistema', 'medicos'));
+        }
     }
 }
