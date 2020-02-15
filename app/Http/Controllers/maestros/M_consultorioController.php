@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Menu; 
 
 use App\Models\maestros\M_clinica; 
 
@@ -31,6 +32,7 @@ class M_consultorioController extends AppBaseController
      */
     public function index(Request $request)
     {
+        Menu::seleccionMenu('Administración del sistema', 'Consultorios'); 
         $mConsultorios = $this->mConsultorioRepository->all();
 
         return view('m_consultorios.index')

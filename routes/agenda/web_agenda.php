@@ -20,6 +20,6 @@
 
 //Route::resource('agendas', 'agenda\AgendaController'); 
 
-// Route::get('perfilaccions/submodulos/{id}', 'Perfiles\PerfilaccionController@getSubModulos');
+// Route::get('agendas/calendario/{user_id}', 'agenda\AgendaController@calendario');
 
 // Route::get('perfilaccions/submodulos2/{id}', 'Perfiles\PerfilaccionController@getSubModulos2');

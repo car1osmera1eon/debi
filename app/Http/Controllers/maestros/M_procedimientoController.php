@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Menu; 
 
 class M_procedimientoController extends AppBaseController
 {
@@ -29,6 +30,7 @@ class M_procedimientoController extends AppBaseController
      */
     public function index(Request $request)
     {
+        Menu::seleccionMenu('Administración del sistema', 'Procedimientos'); 
         $mProcedimientos = $this->mProcedimientoRepository->all();
 
         return view('m_procedimientos.index')

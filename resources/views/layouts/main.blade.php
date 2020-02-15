@@ -9,7 +9,7 @@
 
     <title>{{ Session::get('nom_sistema')}}</title>
 
-    <link rel="icon" href="{{ URL::asset('assets/img/roboto.png') }}">
+    <link rel="icon" href="{{ URL::asset('assets/img/logo1.png') }}">
 
 
     <!--STYLESHEET-->
@@ -80,7 +80,7 @@
                 <!--================================-->
                 <div class="navbar-header">
                     <a href="index.html" class="navbar-brand">
-                        <img src="{{ URL::asset('assets/img/roboto.png') }}" alt="Logo Empresa" class="brand-icon">
+                        <img src="{{ URL::asset('assets/img/logo1.png') }}" alt="Logo Empresa" class="brand-icon">
                         <div class="brand-title">
                             <span class="brand-text">{{ Session::get('nom_sistema')}}</span>
                         </div>
