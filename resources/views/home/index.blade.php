@@ -19,15 +19,15 @@
                 </div>
                 <ul class="list-unstyled bord-top pad-top mar-no row">
                 <div class="list-group bg-trans mar-no">
-                    <a class="list-group-item list-item-sm" href="#">
+                    <a class="list-group-item list-item-sm" href="{{route('agendaDelDia',[$medico->id])}}">
                         {{-- <span class="label label-primary pull-right">15</span> --}}
-                        Agendar
+                        Agenda
                     </a>
                     <a class="list-group-item list-item-sm" href="#">
                         {{-- <span class="label label-success pull-right">100</span> --}}
                         Horario Laboral
                     </a>
-                    <a class="list-group-item list-item-sm" href="#">
+                    <a class="list-group-item list-item-sm" href="">
                         <span class="label label-success pull-right">40</span>
                         Calendario
                     </a>

@@ -1,5 +1,7 @@
 <?php
-
+$path = "maestros/";
+$route = "web_maestros.php";
+$namespace = "\maestros";
 return [
 
     /*
@@ -9,49 +11,49 @@ return [
     |
     */
 
-    'path' => [
+    "path" => [
 
-        'migration'         => database_path('migrations/'),
+        "migration"         => database_path("migrations/"),
 
-        'model'             => app_path('Models/'),
+        "model"             => app_path("Models/$path"),
 
-        'datatables'        => app_path('DataTables/'),
+        "datatables"        => app_path("DataTables/$path"),
 
-        'repository'        => app_path('Repositories/'),
+        "repository"        => app_path("Repositories/$path"),
 
-        'routes'            => base_path('routes/maestros/web_maestros.php'),
+        "routes"            => base_path("routes/$path/$route"),
 
-        'api_routes'        => base_path('routes/api.php'),
+        "api_routes"        => base_path("routes/api.php"),
 
-        'request'           => app_path('Http/Requests/'),
+        "request"           => app_path("Http/Requests/$path"),
 
-        'api_request'       => app_path('Http/Requests/API/'),
+        "api_request"       => app_path("Http/Requests/API/"),
 
-        'controller'        => app_path('Http/Controllers/'),
+        "controller"        => app_path("Http/Controllers/$path"),
 
-        'api_controller'    => app_path('Http/Controllers/API/'),
+        "api_controller"    => app_path("Http/Controllers/API/"),
 
-        'repository_test'   => base_path('tests/Repositories/'),
+        "repository_test"   => base_path("tests/Repositories/"),
 
-        'api_test'          => base_path('tests/APIs/'),
+        "api_test"          => base_path("tests/APIs/"),
 
-        'tests'             => base_path('tests/'),
+        "tests"             => base_path("tests/"),
 
-        'views'             => resource_path('views/'),
+        "views"             => resource_path("views/"),
 
-        'schema_files'      => resource_path('model_schemas/'),
+        "schema_files"      => resource_path("model_schemas/"),
 
-        'templates_dir'     => resource_path('infyom/infyom-generator-templates/'),
+        "templates_dir"     => resource_path("infyom/infyom-generator-templates/"),
 
-        'seeder'            => database_path('seeds/'),
+        "seeder"            => database_path("seeds/"),
 
-        'database_seeder'   => database_path('seeds/DatabaseSeeder.php'),
+        "database_seeder"   => database_path("seeds/DatabaseSeeder.php"),
 
-        'modelJs'           => resource_path('assets/js/models/'),
+        "modelJs"           => resource_path("assets/js/models/"),
 
-        'factory'           => database_path('factories/'),
+        "factory"           => database_path("factories/$path"),
 
-        'view_provider'     => app_path('Providers/ViewServiceProvider.php'),
+        "view_provider"     => app_path("Providers/ViewServiceProvider.php"),
     ],
 
     /*
@@ -61,27 +63,27 @@ return [
     |
     */
 
-    'namespace' => [
+    "namespace" => [
 
-        'model'             => 'App\Models',
+        "model"             => "App\Models$namespace",
 
-        'datatables'        => 'App\DataTables',
+        "datatables"        => "App\DataTables$namespace",
 
-        'repository'        => 'App\Repositories',
+        "repository"        => "App\Repositories$namespace",
 
-        'controller'        => 'App\Http\Controllers',
+        "controller"        => "App\Http\Controllers$namespace",
 
-        'api_controller'    => 'App\Http\Controllers\API',
+        "api_controller"    => "App\Http\Controllers\API",
 
-        'request'           => 'App\Http\Requests',
+        "request"           => "App\Http\Requests$namespace",
 
-        'api_request'       => 'App\Http\Requests\API',
+        "api_request"       => "App\Http\Requests\API",
 
-        'repository_test'   => 'Tests\Repositories',
+        "repository_test"   => "Tests\Repositories",
 
-        'api_test'          => 'Tests\APIs',
+        "api_test"          => "Tests\APIs",
 
-        'tests'             => 'Tests',
+        "tests"             => "Tests",
     ],
 
     /*
@@ -91,7 +93,7 @@ return [
     |
     */
 
-    'templates'         => 'adminlte-templates',
+    "templates"         => "adminlte-templates",
 
     /*
     |--------------------------------------------------------------------------
@@ -100,7 +102,7 @@ return [
     |
     */
 
-    'model_extend_class' => 'Eloquent',
+    "model_extend_class" => "Eloquent",
 
     /*
     |--------------------------------------------------------------------------
@@ -109,9 +111,9 @@ return [
     |
     */
 
-    'api_prefix'  => 'api',
+    "api_prefix"  => "api",
 
-    'api_version' => 'v1',
+    "api_version" => "v1",
 
     /*
     |--------------------------------------------------------------------------
@@ -120,19 +122,19 @@ return [
     |
     */
 
-    'options' => [
+    "options" => [
 
-        'softDelete' => true,
+        "softDelete" => true,
 
-        'save_schema_file' => true,
+        "save_schema_file" => true,
 
-        'localized' => false,
+        "localized" => false,
 
-        'tables_searchable_default' => false,
+        "tables_searchable_default" => false,
 
-        'repository_pattern' => true,
+        "repository_pattern" => true,
 
-        'excluded_fields' => ['id'], // Array of columns that doesn't required while creating module
+        "excluded_fields" => ["id"], // Array of columns that doesn"t required while creating module
     ],
 
     /*
@@ -142,15 +144,15 @@ return [
     |
     */
 
-    'prefixes' => [
+    "prefixes" => [
 
-        'route' => '',  // using admin will create route('admin.?.index') type routes
+        "route" => "",  // using admin will create route("admin.?.index") type routes
 
-        'path' => '',
+        "path" => "$path",
 
-        'view' => '',  // using backend will create return view('backend.?.index') type the backend views directory
+        "view" => "",  // using backend will create return view("backend.?.index") type the backend views directory
 
-        'public' => '',
+        "public" => "",
     ],
 
     /*
@@ -160,19 +162,19 @@ return [
     |
     */
 
-    'add_on' => [
+    "add_on" => [
 
-        'swagger'       => false,
+        "swagger"       => false,
 
-        'tests'         => true,
+        "tests"         => true,
 
-        'datatables'    => false,
+        "datatables"    => false,
 
-        'menu'          => [
+        "menu"          => [
 
-            'enabled'       => false,
+            "enabled"       => false,
 
-            'menu_file'     => 'layouts/menu.blade.php',
+            "menu_file"     => "layouts/menu.blade.php",
         ],
     ],
 
@@ -183,15 +185,15 @@ return [
     |
     */
 
-    'timestamps' => [
+    "timestamps" => [
 
-        'enabled'       => true,
+        "enabled"       => true,
 
-        'created_at'    => 'created_at',
+        "created_at"    => "created_at",
 
-        'updated_at'    => 'updated_at',
+        "updated_at"    => "updated_at",
 
-        'deleted_at'    => 'deleted_at',
+        "deleted_at"    => "deleted_at",
     ],
 
     /*
@@ -200,7 +202,7 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'ignore_model_prefix' => false,
+    "ignore_model_prefix" => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -208,9 +210,9 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'from_table' => [
+    "from_table" => [
 
-        'doctrine_mappings' => [],
+        "doctrine_mappings" => [],
     ],
 
 ];

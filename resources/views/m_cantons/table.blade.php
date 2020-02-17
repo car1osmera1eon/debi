@@ -13,9 +13,9 @@
         @foreach($mCantons as $mCanton)
             <tr>
                 <td>{{ $mCanton->codigo_provincia }}</td>
-            <td>{{ $mCanton->codigo_m_canton }}</td>
-            <td>{{ $mCanton->nombre_m_canton }}</td>
-            <td>{{ $mCanton->codigo_nombre }}</td>
+                <td>{{ $mCanton->codigo_m_canton }}</td>
+                <td>{{ $mCanton->nombre_m_canton }}</td>
+                <td>{{ $mCanton->codigo_nombre }}</td>
                 <td>
                     {!! Form::open(['route' => ['mCantons.destroy', $mCanton->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

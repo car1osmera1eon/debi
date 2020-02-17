@@ -18,8 +18,8 @@
 
 // Route::get('/home', 'HomeController@index')->name('home'); 
 
-//Route::resource('agendas', 'agenda\AgendaController'); 
+Route::resource('agendas', 'agenda\AgendaController'); 
 
-// Route::get('agendas/calendario/{user_id}', 'agenda\AgendaController@calendario');
+Route::get('agendaDelDia/{user_id}', 'agenda\AgendaController@agendaDelDia')->name('agendaDelDia');
 
 // Route::get('perfilaccions/submodulos2/{id}', 'Perfiles\PerfilaccionController@getSubModulos2');
