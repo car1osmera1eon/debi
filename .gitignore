@@ -2,8 +2,13 @@
 node_modules/
 npm-debug.log
 yarn-error.log
-/public/
-
+#/public/
+/public/assets
+/public/css
+/public/nifty
+/public/assets
+/public/photos
+/public/photos_clinca
 # Laravel 4 specific
 bootstrap/compiled.php
 app/storage/
