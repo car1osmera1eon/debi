@@ -30,4 +30,3 @@
 <script src="{{ URL::asset('nifty/demo/plugins/fullcalendar/lib/moment.min.js') }}" defer></script>
 <script src="{{ URL::asset('nifty/demo/plugins/fullcalendar/fullcalendar.min.js') }}" defer></script>
 <script src="{{ URL::asset('nifty/demo/plugins/fullcalendar/lang/es.js') }}"defer></script>
-<script src="{{ URL('js/agenda/agenda.js') }}"defer></script>

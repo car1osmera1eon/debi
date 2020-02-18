@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers\agenda;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\agenda\CreateAgendaRequest;
 use App\Http\Requests\agenda\UpdateAgendaRequest;
 use App\Repositories\agenda\AgendaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\maestros\M_procedimiento;
+use App\Models\maestros\M_paciente; 
+use App\Models\maestros\M_medico; 
+use App\Models\maestros\M_consultorio; 
+use App\Models\maestros\M_clinica; 
+use App\Models\maestros\Especialidad; 
 use Flash;
 use Response;
 
@@ -93,14 +100,29 @@ class AgendaController extends AppBaseController
     public function edit($id)
     {
         $agenda = $this->agendaRepository->find($id);
-
+        $pacientes = array();       $medicos = array();
+        //$pacientes = M_paciente::select('primernombre', 'id')->get();
+        $procedimientos = M_procedimiento::pluck('nombre','id');
+        $consultorios   = M_consultorio::pluck('nombre','id');
+        $clinicas       = M_clinica::pluck('razonsocial','id');
+        $especialidades = Especialidad::pluck('nombre','id');
+        $medicosall     = M_medico::all();
+        $pacientesall   = M_paciente::all();
+        foreach($pacientesall as $pac){
+            $paciente[$pac->id]         = $pac->primernombre . " " . $pac->primerapellido; 
+            $pacientes = $paciente;
+        }  
+        foreach($medicosall as $row){
+            $medico[$row->id]         = $row->usuario->name; 
+            $medicos = $medico;
+        } 
         if (empty($agenda)) {
             Flash::error('Agenda not found');
 
             return redirect(route('agendas.index'));
         }
 
-        return view('agendas.edit')->with('agenda', $agenda);
+        return view('agendas.edit', compact('agenda','pacientes','procedimientos','medicos','consultorios','clinicas','especialidades'));
     }
 
     /**
@@ -156,5 +178,21 @@ class AgendaController extends AppBaseController
 
     public function agendaDelDia($id){
         return view('agendas.agenda', ['medico_id'=>$id, 'tipo'=>'agenda']);
+    }
+
+    
+    public function agendaMedico($id){ 
+        $data = array();    $evento = array();
+        $agenda = $this->agendaRepository->all(['medico_id'=>$id]); 
+        foreach($agenda as $row){
+            $evento['id']     = $row->id;             
+            $evento['title']  = "Procedimiento: ".$row->procedimiento->nombre.", Paciente: ".$row->paciente->primernombre." ".$row->paciente->primerapellido;     
+            $evento['start']  = date('Y-m-d H:i',strtotime($row->fechaini));       
+            $evento['end']    = date('Y-m-d H:i',strtotime($row->fechafin));  
+            $evento['url']    = route('agendas.edit',[$row->id]);  
+            
+            $data[] = $evento;    
+        }
+        return response()->json($data); 
     }
 }

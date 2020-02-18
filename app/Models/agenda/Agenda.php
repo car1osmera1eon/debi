@@ -132,9 +132,17 @@ class Agenda extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
+    public function paciente()
+    {
+        return $this->belongsTo(\App\Models\maestros\M_paciente::class, 'paciente_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
     public function clinica()
     {
-        return $this->belongsTo(\App\Models\MClinica::class, 'clinica_id');
+        return $this->belongsTo(\App\Models\maestros\M_clinica::class, 'clinica_id');
     }
 
     /**
@@ -142,7 +150,7 @@ class Agenda extends Model
      **/
     public function consultorio()
     {
-        return $this->belongsTo(\App\Models\MConsultorio::class, 'consultorio_id');
+        return $this->belongsTo(\App\Models\maestros\M_consultorio::class, 'consultorio_id');
     }
 
     /**
@@ -150,7 +158,7 @@ class Agenda extends Model
      **/
     public function medico()
     {
-        return $this->belongsTo(\App\Models\MMedico::class, 'medico_id');
+        return $this->belongsTo(\App\Models\maestros\M_medico::class, 'medico_id');
     }
 
     /**
@@ -158,7 +166,7 @@ class Agenda extends Model
      **/
     public function especialidad()
     {
-        return $this->belongsTo(\App\Models\Especialidad::class, 'especialidad_id');
+        return $this->belongsTo(\App\Models\maestros\Especialidad::class, 'especialidad_id');
     }
 
     /**
@@ -166,7 +174,7 @@ class Agenda extends Model
      **/
     public function procedimiento()
     {
-        return $this->belongsTo(\App\Models\MProcedimiento::class, 'procedimiento_id');
+        return $this->belongsTo(\App\Models\maestros\M_procedimiento::class, 'procedimiento_id');
     }
 
     /**
