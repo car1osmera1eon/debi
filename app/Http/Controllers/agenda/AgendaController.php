@@ -14,6 +14,7 @@ use App\Models\maestros\M_medico;
 use App\Models\maestros\M_consultorio; 
 use App\Models\maestros\M_clinica; 
 use App\Models\maestros\Especialidad; 
+use App\Models\agenda\Agenda; 
 use Flash;
 use Response;
 
@@ -194,5 +195,13 @@ class AgendaController extends AppBaseController
             $data[] = $evento;    
         }
         return response()->json($data); 
+    }
+
+    public function actualizarAgenda(Request $request){    
+        $input['fechaini'] = $request->fechaini;
+        $input['fechafin'] = $request->fechafin;
+        Agenda::where('id', $request->id)
+            ->update($input);
+ 
     }
 }
