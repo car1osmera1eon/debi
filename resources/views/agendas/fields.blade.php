@@ -1,30 +1,53 @@
 <!-- Fechaini Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fechaini', 'Fechaini:') !!}
-    {!! Form::text('fechaini', null, ['class' => 'form-control','id'=>'fechaini']) !!}
-</div>
+<div class="form-group col-sm-3">
+    {!! Form::label('fechaini', 'Fecha inicio:') !!}
+    <div id="demo-dp-component">
+        <div class="input-group date">
+            {!! Form::text('fechaini', null, ['class' => 'form-control','id'=>'fechaini']) !!}
+            <span class="input-group-addon"><i class="pli-calendar"></i></span>
+        </div> 
+    </div>
+</div> 
 
 @push('scripts')
     <script type="text/javascript" defer>
-        $('#fechaini').datepicker({ 
-            format: 'yyyy-mm-dd'
-        });
+        // $('#fechaini').datepicker({ 
+        //     format: 'yyyy-mm-dd HH:mm:ss'
+        // });
     </script>
 @endpush
 
-<!-- Fechafin Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fechafin', 'Fechafin:') !!}
-    {!! Form::text('fechafin', null, ['class' => 'form-control','id'=>'fechafin']) !!}
+<!-- Fechaini Field -->
+<div class="form-group col-sm-3">
+    {!! Form::label('horaini', 'Hora inicio:') !!}
+    {!! Form::text('horaini', null, ['class' => 'form-control','id'=>'horaini']) !!}
 </div>
+
+
+<!-- Fechafin Field --> 
+<div class="form-group col-sm-3">
+{!! Form::label('fechafin', 'Fechafin:') !!}
+    <div id="demo-dp-component">
+        <div class="input-group date">
+        {!! Form::text('fechafin', null, ['class' => 'form-control','id'=>'fechafin', 'data-format'=>'yyyy-mm-dd' ]) !!}
+            <span class="input-group-addon"><i class="pli-calendar"></i></span>
+        </div> 
+    </div>
+</div> 
 
 @push('scripts')
     <script type="text/javascript" defer>
-        $('#fechafin').datepicker({ 
-            format: 'yyyy-mm-dd'
-        });
+        // $('#fechafin').datepicker({ 
+        //     format: 'yyyy-mm-dd HH:mm:ss'
+        // });
     </script>
 @endpush
+
+<!-- Fechaini Field -->
+<div class="form-group col-sm-3">
+    {!! Form::label('horafin', 'Hora fin:') !!}
+    {!! Form::text('horafin', null, ['class' => 'form-control','id'=>'horafin']) !!}
+</div>
 
 <!-- Paciente Id Field -->
 <div class="form-group col-sm-6">
@@ -107,15 +130,6 @@
     {!! Form::number('seguro_id', null, ['class' => 'form-control']) !!}
 </div> -->
 
-<!-- Estado Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('estado', 'Estado:') !!}
-    {!! Form::select('estado', array(1=>'Activo', 2=>'Inactivo'), null, ['class' => 'form-control']) !!}
-    <!-- <label class="checkbox-inline">
-        {!! Form::hidden('estado', 0) !!}
-        {!! Form::checkbox('estado', '1', null) !!}
-    </label> -->
-</div>
 
 
 <!-- Usuariocrea Id Field -->
@@ -152,6 +166,16 @@
 <div class="form-group col-sm-6">
     {!! Form::label('diagnostico_proc', 'Diagnostico Proc:') !!}
     {!! Form::textarea('diagnostico_proc', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Estado Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('estado', 'Estado:') !!}
+    {!! Form::select('estado', array(1=>'Activo', 2=>'Inactivo'), null, ['class' => 'form-control']) !!}
+    <!-- <label class="checkbox-inline">
+        {!! Form::hidden('estado', 0) !!}
+        {!! Form::checkbox('estado', '1', null) !!}
+    </label> -->
 </div>
 
 <!-- Submit Field -->

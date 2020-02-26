@@ -57,7 +57,9 @@ class Agenda extends Model
 
     public $fillable = [
         'fechaini',
+        'horaini',
         'fechafin',
+        'horafin',
         'paciente_id',
         'medico_id',
         'proc_consul',
@@ -87,8 +89,10 @@ class Agenda extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'fechaini' => 'datetime',
-        'fechafin' => 'datetime',
+        'fechaini' => 'date',
+        'horaini' => 'string',
+        'fechafin' => 'date',
+        'horafin' => 'string',
         'paciente_id' => 'integer',
         'medico_id' => 'integer',
         'proc_consul' => 'boolean',
@@ -118,7 +122,9 @@ class Agenda extends Model
      */
     public static $rules = [
         'fechaini' => 'required',
+        'horaini' => 'required',
         'fechafin' => 'required',
+        'horafin' => 'required',
         'paciente_id' => 'required',
         'medico_id' => 'required',
         'consultorio_id' => 'required',

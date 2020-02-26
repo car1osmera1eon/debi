@@ -41,10 +41,20 @@
     <script src="{{ URL::asset('assets/js/pace.min.js') }}"></script>
 
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" rel="stylesheet">  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" rel="stylesheet"> 
+    <link href="http://www.themeon.net/nifty/v2.9.1/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet"> 
 
-          
+    <!--datetimepicker [ REQUIRED ]-->
+    <!-- <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet"> -->
+ 
+
+    <!--Fullcalendar [ REQUIRED ]-->
+    <link href="{{ URL::asset('nifty/demo/plugins/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('nifty/demo/plugins/fullcalendar/nifty-skin/fullcalendar-nifty.min.css') }}" rel="stylesheet">
     
+    <!--Select2-->
+    <link href="{{ URL::asset('nifty/demo/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+
     <!--=================================================
 
     REQUIRED
@@ -775,9 +785,19 @@
     <script src="{{ URL::asset('assets/js/nifty.min.js') }}"></script>
 
     <!-- bootbox -->
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+
+    <!--Fullcalendar [ RECOMMENDED ]-->
+    <script src="{{ URL::asset('nifty/demo/plugins/fullcalendar/lib/moment.min.js') }}" ></script>
+    <script src="{{ URL::asset('nifty/demo/plugins/fullcalendar/fullcalendar.min.js') }}" ></script>
+    <script src="{{ URL::asset('nifty/demo/plugins/fullcalendar/lang/es.js') }}"></script>
+    <!-- <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js" ></script> -->
+    <script src="http://www.themeon.net/nifty/v2.9.1/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js" ></script>
+    <script src="{{ URL::asset('nifty/demo/plugins/select2/js/select2.min.js') }}" ></script>
+
 
 </body>
 </html>

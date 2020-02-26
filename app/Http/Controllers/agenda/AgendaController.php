@@ -48,9 +48,25 @@ class AgendaController extends AppBaseController
      *
      * @return Response
      */
-    public function create()
+    public function create($fechaini="",$fechafin="")
     {
-        return view('agendas.create');
+        $pacientes = array();       $medicos = array();
+        //$pacientes = M_paciente::select('primernombre', 'id')->get();
+        $procedimientos = M_procedimiento::pluck('nombre','id');
+        $consultorios   = M_consultorio::pluck('nombre','id');
+        $clinicas       = M_clinica::pluck('razonsocial','id');
+        $especialidades = Especialidad::pluck('nombre','id');
+        $medicosall     = M_medico::all();
+        $pacientesall   = M_paciente::all();
+        foreach($pacientesall as $pac){
+            $paciente[$pac->id]         = $pac->primernombre . " " . $pac->primerapellido; 
+            $pacientes = $paciente;
+        }  
+        foreach($medicosall as $row){
+            $medico[$row->id]         = $row->usuario->name; 
+            $medicos = $medico;
+        } 
+        return view('agendas.create',compact('fechaini','fechafin','pacientes','procedimientos','medicos','consultorios','clinicas','especialidades'));
     }
 
     /**
@@ -175,7 +191,7 @@ class AgendaController extends AppBaseController
         Flash::success('Agenda deleted successfully.');
 
         return redirect(route('agendas.index'));
-    }
+    } 
 
     public function agendaDelDia($id){
         return view('agendas.agenda', ['medico_id'=>$id, 'tipo'=>'agenda']);
@@ -188,9 +204,9 @@ class AgendaController extends AppBaseController
         foreach($agenda as $row){
             $evento['id']     = $row->id;             
             $evento['title']  = "Procedimiento: ".$row->procedimiento->nombre.", Paciente: ".$row->paciente->primernombre." ".$row->paciente->primerapellido;     
-            $evento['start']  = date('Y-m-d H:i',strtotime($row->fechaini));       
-            $evento['end']    = date('Y-m-d H:i',strtotime($row->fechafin));  
-            $evento['url']    = route('agendas.edit',[$row->id]);  
+            $evento['start']  = date('Y-m-d',strtotime($row->fechaini)).' '.$row->horaini;       
+            $evento['end']    = date('Y-m-d',strtotime($row->fechafin)).' '.$row->horafin;  
+            // $evento['url']    = route('agendas.edit',[$row->id]);  
             
             $data[] = $evento;    
         }

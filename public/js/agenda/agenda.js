@@ -46,9 +46,9 @@ function (data) {
         events: data,
         editable: true,
         selectable: true,
-        // eventClick: function (calEvent,jsEvent,view) { 
-        //     alert(calEvent.id);
-        // },
+        eventClick: function (calEvent,jsEvent,view) { 
+            alert(calEvent.id);
+        },
         eventDrop: function(event, delta, revertFunc){
             // alert(event.title + " " + event.start.format() );
             // alert(url_update); return; 
@@ -62,7 +62,26 @@ function (data) {
             ); 
         },
         select: function(startDate, endDate) {
-            alert('selected ' + startDate.format() + ' to ' + endDate.format());
+            // bootbox.alert('selected ' + startDate.format() + ' to ' + endDate.format());
+            bootbox.confirm({
+                message: "Desea agendar en el horario "+ startDate.format(),
+                buttons: {
+                    confirm: {
+                        label: 'Si',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if(result){
+
+                    }
+                    console.log('This was logged in the callback: ' + result);
+                }
+            });
         },
     })
 }
