@@ -1,10 +1,5 @@
 @extends('layouts.main')
 
-
-
-
-
-
 @section('content')
     <section class="content-header">
         <h1 class="pull-left">Agenda del dia </h1>

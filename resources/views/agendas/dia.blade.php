@@ -2,6 +2,7 @@
 <script>
 var url_agendamedico    = "{{route('agendaMedico',[$medico_id])}}";
 var url_update          = "{{route('actualizarAgenda')}}";
+var url_new             = "{{route('crearAgenda', ['fechaini'])}}";
 var token = "{{ csrf_token() }}";
 //alert(token);
 </script>

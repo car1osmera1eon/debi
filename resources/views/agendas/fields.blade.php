@@ -2,8 +2,8 @@
 <div class="form-group col-sm-3">
     {!! Form::label('fechaini', 'Fecha inicio:') !!}
     <div id="demo-dp-component">
-        <div class="input-group date">
-            {!! Form::text('fechaini', null, ['class' => 'form-control','id'=>'fechaini']) !!}
+        <div class="input-group date"> 
+            {!! Form::text('fechaini', @$fechaini, ['class' => 'form-control','id'=>'fechaini'], @$fechaini) !!}
             <span class="input-group-addon"><i class="pli-calendar"></i></span>
         </div> 
     </div>
@@ -12,7 +12,7 @@
 @push('scripts')
     <script type="text/javascript" defer>
         // $('#fechaini').datepicker({ 
-        //     format: 'yyyy-mm-dd HH:mm:ss'
+        //     format: 'yyyy-mm-dd'
         // });
     </script>
 @endpush
@@ -20,7 +20,7 @@
 <!-- Fechaini Field -->
 <div class="form-group col-sm-3">
     {!! Form::label('horaini', 'Hora inicio:') !!}
-    {!! Form::text('horaini', null, ['class' => 'form-control','id'=>'horaini']) !!}
+    {!! Form::text('horaini', @$horaini, ['class' => 'form-control','id'=>'horaini']) !!}
 </div>
 
 
@@ -29,7 +29,7 @@
 {!! Form::label('fechafin', 'Fechafin:') !!}
     <div id="demo-dp-component">
         <div class="input-group date">
-        {!! Form::text('fechafin', null, ['class' => 'form-control','id'=>'fechafin', 'data-format'=>'yyyy-mm-dd' ]) !!}
+        {!! Form::text('fechafin', null, ['class' => 'form-control','id'=>'fechafin']) !!}
             <span class="input-group-addon"><i class="pli-calendar"></i></span>
         </div> 
     </div>

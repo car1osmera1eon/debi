@@ -77,9 +77,11 @@ function (data) {
                 },
                 callback: function (result) {
                     if(result){
-
+                        url_crear = url_new.replace('fechaini', startDate.format());
+                        alert(url_crear);
+                        location.href = url_crear;
                     }
-                    console.log('This was logged in the callback: ' + result);
+                    console.log('Crear agenda');
                 }
             });
         },

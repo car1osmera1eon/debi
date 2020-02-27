@@ -48,7 +48,7 @@ class AgendaController extends AppBaseController
      *
      * @return Response
      */
-    public function create($fechaini="",$fechafin="")
+    public function create()
     {
         $pacientes = array();       $medicos = array();
         //$pacientes = M_paciente::select('primernombre', 'id')->get();
@@ -66,7 +66,7 @@ class AgendaController extends AppBaseController
             $medico[$row->id]         = $row->usuario->name; 
             $medicos = $medico;
         } 
-        return view('agendas.create',compact('fechaini','fechafin','pacientes','procedimientos','medicos','consultorios','clinicas','especialidades'));
+        return view('agendas.create',compact('pacientes','procedimientos','medicos','consultorios','clinicas','especialidades'));
     }
 
     /**
@@ -117,6 +117,7 @@ class AgendaController extends AppBaseController
     public function edit($id)
     {
         $agenda = $this->agendaRepository->find($id);
+        // $agenda->fechaini = date('Y-m-d',strtotime($agenda->fechaini));
         $pacientes = array();       $medicos = array();
         //$pacientes = M_paciente::select('primernombre', 'id')->get();
         $procedimientos = M_procedimiento::pluck('nombre','id');
@@ -220,4 +221,30 @@ class AgendaController extends AppBaseController
             ->update($input);
  
     }
+
+    public function crearAgenda($fechaini)
+    {
+        $pacientes = array();       $medicos = array();
+        //$pacientes = M_paciente::select('primernombre', 'id')->get();
+        $procedimientos = M_procedimiento::pluck('nombre','id');
+        $consultorios   = M_consultorio::pluck('nombre','id');
+        $clinicas       = M_clinica::pluck('razonsocial','id');
+        $especialidades = Especialidad::pluck('nombre','id');
+        $medicosall     = M_medico::all();
+        $pacientesall   = M_paciente::all();
+        foreach($pacientesall as $pac){
+            $paciente[$pac->id]         = $pac->primernombre . " " . $pac->primerapellido; 
+            $pacientes                  = $paciente;
+        }  
+        foreach($medicosall as $row){
+            $medico[$row->id]           = $row->usuario->name; 
+            $medicos                    = $medico;
+        } 
+        if($fechaini!=""){
+            $horaini = substr($fechaini, 11, 9);
+            $fechaini = substr($fechaini, 0, 10); 
+        }
+        return view('agendas.create',compact('fechaini','horaini','pacientes','procedimientos','medicos','consultorios','clinicas','especialidades'));
+    }
+
 }

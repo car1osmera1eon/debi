@@ -18,7 +18,9 @@ class AgendaRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'fechaini',
+        'horaini',
         'fechafin',
+        'horafin',
         'paciente_id',
         'medico_id',
         'proc_consul',

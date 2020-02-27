@@ -26,3 +26,4 @@ $("#tipo_cita").select2();
 $("#estado_cita").select2();
 $("#clinica_id").select2();
 $("#especialidad_id").select2();
+$("#estado").select2();
