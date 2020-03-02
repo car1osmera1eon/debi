@@ -29,7 +29,7 @@
 {!! Form::label('fechafin', 'Fechafin:') !!}
     <div id="demo-dp-component">
         <div class="input-group date">
-        {!! Form::text('fechafin', null, ['class' => 'form-control','id'=>'fechafin']) !!}
+        {!! Form::text('fechafin', @$fechafin, ['class' => 'form-control','id'=>'fechafin']) !!}
             <span class="input-group-addon"><i class="pli-calendar"></i></span>
         </div> 
     </div>
@@ -46,7 +46,7 @@
 <!-- Fechaini Field -->
 <div class="form-group col-sm-3">
     {!! Form::label('horafin', 'Hora fin:') !!}
-    {!! Form::text('horafin', null, ['class' => 'form-control','id'=>'horafin']) !!}
+    {!! Form::text('horafin', @$horafin, ['class' => 'form-control','id'=>'horafin']) !!}
 </div>
 
 <!-- Paciente Id Field -->

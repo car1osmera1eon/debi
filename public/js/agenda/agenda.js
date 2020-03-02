@@ -41,11 +41,20 @@ function (data) {
             center: 'title',
             right:  'agendaWeek,agendaDay'
         },
-        defaultView: 'agenda',
-        contentHeight: 600,
-        events: data,
-        editable: true,
-        selectable: true,
+        defaultView:    'agenda',
+        contentHeight:  600,
+        events:         data,   //js array
+        editable:       true,
+        selectable:     true,
+        minTime:        "08:00:00",
+        maxTime:        "22:00:00",
+        businessHours: {
+            // days of week. an array of zero-based day of week integers (0=Sunday)
+            dow: [ 1, 2, 3, 4, 5 ], 
+            start: '09:00', // a start time (09am in this example)
+            end: '20:00', // an end time (8pm in this example) 
+        },
+        selectConstraint: "businessHours",
         eventClick: function (calEvent,jsEvent,view) { 
             alert(calEvent.id);
         },
@@ -77,8 +86,8 @@ function (data) {
                 },
                 callback: function (result) {
                     if(result){
-                        url_crear = url_new.replace('fechaini', startDate.format());
-                        alert(url_crear);
+                        url_crear = url_new.replace('fechaini', startDate.format()); 
+                        url_crear = url_crear.replace('fechafin', endDate.format());   
                         location.href = url_crear;
                     }
                     console.log('Crear agenda');

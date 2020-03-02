@@ -222,7 +222,7 @@ class AgendaController extends AppBaseController
  
     }
 
-    public function crearAgenda($fechaini)
+    public function crearAgenda($fechaini, $fechafin)
     {
         $pacientes = array();       $medicos = array();
         //$pacientes = M_paciente::select('primernombre', 'id')->get();
@@ -244,7 +244,11 @@ class AgendaController extends AppBaseController
             $horaini = substr($fechaini, 11, 9);
             $fechaini = substr($fechaini, 0, 10); 
         }
-        return view('agendas.create',compact('fechaini','horaini','pacientes','procedimientos','medicos','consultorios','clinicas','especialidades'));
+        if($fechafin!=""){
+            $horafin = substr($fechafin, 11, 9);
+            $fechafin = substr($fechafin, 0, 10); 
+        }
+        return view('agendas.create',compact('fechaini','horaini','fechafin','horafin','pacientes','procedimientos','medicos','consultorios','clinicas','especialidades'));
     }
 
 }

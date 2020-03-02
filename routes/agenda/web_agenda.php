@@ -24,6 +24,6 @@ Route::get('agendaDelDia/{user_id}', 'agenda\AgendaController@agendaDelDia')->na
 // Route::get('agendaMedico/{medico_id}', 'agenda\AgendaController@agendaDelDia')->name('agendaMedico');
 Route::match(['get', 'post'], 'agendaMedico/{medico_id}', 'agenda\AgendaController@agendaMedico')->name('agendaMedico'); 
 Route::match(['get', 'post'], 'actualizarAgenda', 'agenda\AgendaController@actualizarAgenda')->name('actualizarAgenda'); 
-Route::match(['get', 'post'], 'crearAgenda/{fechaini}', 'agenda\AgendaController@crearAgenda')->name('crearAgenda');
+Route::match(['get', 'post'], 'crearAgenda/{fechaini}/{fechafin}', 'agenda\AgendaController@crearAgenda')->name('crearAgenda');
 
 // Route::get('perfilaccions/submodulos2/{id}', 'Perfiles\PerfilaccionController@getSubModulos2');

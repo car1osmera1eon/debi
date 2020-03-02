@@ -474,16 +474,17 @@
 
                 <!--Breadcrumb-->
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <ol class="breadcrumb">
+                {{-- <ol class="breadcrumb">
                     <li><a href="#"><i class="pli-home"></i></a></li>
                     <li><a href="#">Home</a></li>
                     <li class="active">Data</li>
-                </ol>
+                </ol> --}}
+                @yield('breadcrumb')
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                 <!--End breadcrumb-->
 
 
-                        </div>
+                </div>
 
 
                 <!--Page content-->

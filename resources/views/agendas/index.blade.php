@@ -1,5 +1,7 @@
 @extends('layouts.main')
-
+@section('breadcrumb')
+    @extends('agendas.breadcrumb') 
+@endsection
 @section('content')
     <section class="content-header">
         <h1 class="pull-left">Agendas</h1>
