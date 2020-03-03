@@ -1,7 +1,7 @@
 <?php
-$path = "maestros/";
-$route = "web_maestros.php";
-$namespace = "\maestros";
+$path = "agenda/";
+$route = "web_agenda.php";
+$namespace = "\agenda";
 return [
 
     /*

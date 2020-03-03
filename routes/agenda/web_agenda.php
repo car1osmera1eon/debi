@@ -27,3 +27,9 @@ Route::match(['get', 'post'], 'actualizarAgenda', 'agenda\AgendaController@actua
 Route::match(['get', 'post'], 'crearAgenda/{fechaini}/{fechafin}', 'agenda\AgendaController@crearAgenda')->name('crearAgenda');
 
 // Route::get('perfilaccions/submodulos2/{id}', 'Perfiles\PerfilaccionController@getSubModulos2');
+
+Route::resource('horarioMedicos', 'Agenda\HorarioMedicoController');
+
+Route::match(['get', 'post'], 'horarioMedico/{medico_id}', 'agenda\HorarioMedicoController@horarioMedico')->name('horarioMedico'); 
+Route::match(['get', 'post'], 'getHorarioMedico/{medico_id}', 'agenda\HorarioMedicoController@getHorarioMedico')->name('getHorarioMedico'); 
+Route::match(['get', 'post'], 'crearHorario/{ndia}/{horaini}', 'agenda\HorarioMedicoController@crearHorario')->name('crearHorario');
