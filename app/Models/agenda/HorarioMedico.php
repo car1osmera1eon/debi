@@ -56,7 +56,7 @@ class HorarioMedico extends Model
     protected $casts = [
         'id' => 'integer',
         'medico_id' => 'integer',
-        'ndia' => 'boolean',
+        'ndia' => 'integer',
         'dia' => 'string',
         'estado' => 'boolean',
         'id_usuariocrea' => 'string',

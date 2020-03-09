@@ -36,7 +36,17 @@ $.post( url_horario, { _token: token },
                     fechaini: event.start.format(),
                     fechafin: event.end.format(),
                     _token: token
-                }
+                },
+                function(res, status){
+                    
+                    if(res.estado=="ok"){
+                        bootbox.alert(res.msj);
+                    }else{
+                        bootbox.alert(res.msj);
+                        revertFunc();
+                    }
+                    
+                  }
                 ); 
             },
             select: function(startDate, endDate) {

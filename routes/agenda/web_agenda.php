@@ -33,3 +33,4 @@ Route::resource('horarioMedicos', 'Agenda\HorarioMedicoController');
 Route::match(['get', 'post'], 'horarioMedico/{medico_id}', 'agenda\HorarioMedicoController@horarioMedico')->name('horarioMedico'); 
 Route::match(['get', 'post'], 'getHorarioMedico/{medico_id}', 'agenda\HorarioMedicoController@getHorarioMedico')->name('getHorarioMedico'); 
 Route::match(['get', 'post'], 'crearHorario/{ndia}/{horaini}', 'agenda\HorarioMedicoController@crearHorario')->name('crearHorario');
+Route::match(['get', 'post'], 'actualizarHorarioMedico', 'agenda\HorarioMedicoController@actualizarHorarioMedico')->name('actualizarHorarioMedico');

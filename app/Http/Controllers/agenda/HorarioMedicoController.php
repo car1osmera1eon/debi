@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\agenda\HorarioMedico; 
 
 class HorarioMedicoController extends AppBaseController
 {
@@ -162,16 +163,30 @@ class HorarioMedicoController extends AppBaseController
     {
         $data = array();    $evento = array();
         $horario = $this->horarioMedicoRepository->all(['medico_id'=>$id]); 
-        $fecha = date('Y-m-d');
+        // $fecha = date('Y-m-d'); 
+        $year = date('Y');
+        $week = date('W');  
+        $dayofweek = array ('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'); 
         foreach($horario as $row){
             $evento['id']     = $row->id;             
-            $evento['title']  = $row->dia;     
-            $evento['start']  = date('Y-m-d',strtotime($fecha)).' '.$row->horaini;       
-            $evento['end']    = date('Y-m-d',strtotime($fecha)).' '.$row->horafin;   
+            $evento['title']  = $row->dia;       
+            $fecha            = date("Y-m-d", strtotime($dayofweek[$row->ndia].' this week')); 
+            $evento['start']  = $fecha.' '.$row->horaini;  
+            $evento['end']    = $fecha.' '.$row->horafin;   
+            $evento['ndia']   = $row->ndia;   
             
             $data[] = $evento;    
         }
+
+       
         return response()->json($data); 
+    }
+
+    public function diasDeLaSemana(){
+        $week =  date('W');
+        for($i=0; $i<7; $i++){
+            echo date('Y-m-d', strtotime('01/01 +' . $week . ' weeks first day +' . $i . ' day')) . '<br />';
+        }
     }
 
     
@@ -179,5 +194,42 @@ class HorarioMedicoController extends AppBaseController
     {
         $horafin = '18:00:00';
         return view('agendas.create',compact('ndia','horaini','horafin'));
+    }
+
+    
+    public function actualizarHorarioMedico(Request $request){
+        $horarioMedico  = $this->horarioMedicoRepository->find($request->id);
+        $request->fechaini = str_replace('T', ' ', $request->fechaini);
+        $horaini = date('H:i', strtotime($request->fechaini));
+
+        $ndia = date('N', strtotime($request->fechaini));
+        // dd($horarioMedico->id);
+        $horarios       = $this->horarioMedicoRepository->all(['medico_id'=>$horarioMedico->medico_id, 'ndia' => $ndia]);
+         
+        $data = array();
+        // dd("$ndia == $horarioMedico->ndia");
+        if(count($horarios)>0){
+
+            $data['estado'] = "error";
+            $data['msj'] = "No se pueden realizar los cambios\n Ya existe un horario registrado para este dia";
+            
+        }else{
+            
+            $request->fechafin = str_replace('T', ' ', $request->fechafin);
+            $horafin = date('H:i', strtotime($request->fechafin));
+            
+            $input['horaini']   = $horaini;
+            $input['horafin']   = $horafin;
+            $input['ndia']      = $ndia;
+    
+            HorarioMedico::where('id', $request->id)->update($input);
+            $data['estado'] = "ok";
+            $data['res'] = "Cambios realizados con éxito";
+            
+        }
+
+        
+        
+        return response()->json($data); 
     }
 }
