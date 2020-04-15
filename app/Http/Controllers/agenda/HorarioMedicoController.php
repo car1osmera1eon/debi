@@ -193,7 +193,8 @@ class HorarioMedicoController extends AppBaseController
     public function crearHorario($ndia, $horaini)
     {
         $horafin = '18:00:00';
-        return view('agendas.create',compact('ndia','horaini','horafin'));
+        return view('horario_medicos.create',compact('ndia','horaini','horafin'));
+        // return view('agendas.create',compact('ndia','horaini','horafin'));
     }
 
     

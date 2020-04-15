@@ -7,13 +7,19 @@ $('#fechafin').datepicker({
     autoclose:true
 });
 $('#horaini').timepicker({
-    minuteStep: 5,
-    showInputs: false,
+    // timeFormat: 'H:mm',
+    // minuteStep: 5,
+    // showInputs: false,
+    // disableFocus: true
+    timeFormat: 'HH:mm',
+    showMeridian: false,
+    interval: 15, // 15 minutes
     disableFocus: true
 });
 $('#horafin').timepicker({
-    minuteStep: 5,
-    showInputs: false,
+    timeFormat: 'HH:mm',
+    showMeridian: false,
+    interval: 15, // 15 minutes
     disableFocus: true
 });
 

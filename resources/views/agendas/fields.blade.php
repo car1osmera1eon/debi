@@ -3,7 +3,7 @@
     {!! Form::label('fechaini', 'Fecha inicio:') !!}
     <div id="demo-dp-component">
         <div class="input-group date"> 
-            {!! Form::text('fechaini', @$fechaini, ['class' => 'form-control','id'=>'fechaini'], @$fechaini) !!}
+            {!! Form::text('fechaini', @$fechaini, ['class' => 'form-control','id'=>'fechaini']) !!}
             <span class="input-group-addon"><i class="pli-calendar"></i></span>
         </div> 
     </div>
@@ -181,6 +181,6 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('agendas.index') }}" class="btn btn-default">Cancel</a>
+    <a href="{{ redirect()->getUrlGenerator()->previous() }}" class="btn btn-default">Cancel</a> 
 </div>
 <script type="text/javascript" src="{{ URL('js/agenda/fields.js') }}"  defer="defer"></script>

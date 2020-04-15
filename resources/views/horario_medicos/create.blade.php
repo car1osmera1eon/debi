@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+@extends('layouts.main')
+@include('horario_medicos.breadcrumb')
 @section('content')
     <section class="content-header">
         <h1>

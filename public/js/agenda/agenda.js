@@ -36,10 +36,11 @@ function (data) {
     // alert(data);
     $('#dia').fullCalendar({
         // put your options and callbacks here
+        defaultDate: valor_dia,
         header:{
             left:   'today prev,next',
             center: 'title',
-            right:  'agendaWeek,agendaDay'
+            right:  'agendaDay,agendaWeek,month'
         },
         defaultView:    'agenda',
         contentHeight:  600,
@@ -55,9 +56,16 @@ function (data) {
             end: '20:00', // an end time (8pm in this example) 
         },
         selectConstraint: "businessHours",
-        eventClick: function (calEvent,jsEvent,view) { 
+        /*eventClick: function (calEvent,jsEvent,view) { 
             alert(calEvent.id);
-        },
+        },*/
+        eventRender: function(event, element) {
+            element.bind('dblclick', function() {
+            //    alert('double click! '+event.id);
+               url_editar = url_editar.replace('evento_id', event.id); 
+               location.href = url_editar;
+            });
+         },
         eventDrop: function(event, delta, revertFunc){
             // alert(event.title + " " + event.start.format() );
             // alert(url_update); return; 
@@ -70,10 +78,20 @@ function (data) {
             }
             ); 
         },
+        eventResize: function(event, delta, revertFunc){  
+            $.post(url_update,
+                {
+                    id: event.id,
+                    fechaini: event.start.format(),
+                    fechafin: event.end.format(),
+                    _token: token
+                }
+            ); 
+        },
         select: function(startDate, endDate) {
-            // bootbox.alert('selected ' + startDate.format() + ' to ' + endDate.format());
+            // bootbox.alert('selected ' + startDate.format() + ' to ' + endDate.format()); 
             bootbox.confirm({
-                message: "Desea agendar en el horario "+ startDate.format(),
+                message: "Desea agendar en el horario: "+ startDate.format(),
                 buttons: {
                     confirm: {
                         label: 'Si',
@@ -86,9 +104,14 @@ function (data) {
                 },
                 callback: function (result) {
                     if(result){
-                        url_crear = url_new.replace('fechaini', startDate.format()); 
-                        url_crear = url_crear.replace('fechafin', endDate.format());   
-                        location.href = url_crear;
+
+                        if(startDate.isBefore(moment())) { 
+                            bootbox.alert({message: "No se puede agendar en el horario seleccionado.", backdrop: true});
+                        }else{
+                            url_crear = url_new.replace('fechaini', startDate.format()); 
+                            url_crear = url_crear.replace('fechafin', endDate.format()); 
+                            location.href = url_crear;
+                        } 
                     }
                     console.log('Crear agenda');
                 }

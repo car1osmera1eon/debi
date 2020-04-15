@@ -10,13 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Route::resource('products', 'ProductController');
-//Route::post('/products/consulta', 'ProductController@consulta');
-//Route::post('/products/store', 'ProductController@store');
-//Route::post('/products/remove', 'ProductController@remove');
- 
-
-// Route::get('/home', 'HomeController@index')->name('home'); 
 
 Route::resource('agendas', 'agenda\AgendaController'); 
 
@@ -26,7 +19,6 @@ Route::match(['get', 'post'], 'agendaMedico/{medico_id}', 'agenda\AgendaControll
 Route::match(['get', 'post'], 'actualizarAgenda', 'agenda\AgendaController@actualizarAgenda')->name('actualizarAgenda'); 
 Route::match(['get', 'post'], 'crearAgenda/{fechaini}/{fechafin}', 'agenda\AgendaController@crearAgenda')->name('crearAgenda');
 
-// Route::get('perfilaccions/submodulos2/{id}', 'Perfiles\PerfilaccionController@getSubModulos2');
 
 Route::resource('horarioMedicos', 'Agenda\HorarioMedicoController');
 

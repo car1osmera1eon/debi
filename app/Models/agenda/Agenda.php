@@ -129,10 +129,7 @@ class Agenda extends Model
         'medico_id' => 'required',
         'consultorio_id' => 'required',
         'clinica_id' => 'required',
-        'estado' => 'required',
-        'usuariocrea_id' => 'required',
-        'usuariomod_id' => 'required',
-        'created_at' => 'required'
+        'estado' => 'required'
     ];
 
     /**

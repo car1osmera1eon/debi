@@ -1,12 +1,12 @@
 <!-- Medico Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('medico_id', 'Medico Id:') !!}
+    {!! Form::label('medico_id', 'Medico:') !!}
     {!! Form::number('medico_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Ndia Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('ndia', 'Ndia:') !!}
+    {!! Form::label('ndia', 'Numero del dia:') !!}
     {!! Form::text('ndia', null, ['class' => 'form-control']) !!}
     {{-- <label class="checkbox-inline">
         {!! Form::hidden('ndia', 0) !!}

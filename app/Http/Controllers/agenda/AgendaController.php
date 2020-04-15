@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\agenda;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth; 
 use App\Http\Requests\agenda\CreateAgendaRequest;
 use App\Http\Requests\agenda\UpdateAgendaRequest;
 use App\Repositories\agenda\AgendaRepository;
@@ -78,13 +79,20 @@ class AgendaController extends AppBaseController
      */
     public function store(CreateAgendaRequest $request)
     {
+
         $input = $request->all();
+        
+        $input['usuariocrea_id']    = Auth::user()->id;
+        $input['usuariomod_id']     = Auth::user()->id;
 
         $agenda = $this->agendaRepository->create($input);
 
         Flash::success('Agenda saved successfully.');
 
-        return redirect(route('agendas.index'));
+        $dia = date('m/d/Y', strtotime($input['fechaini']));
+        return view('agendas.agenda', ['medico_id'=>$input['medico_id'], 'tipo'=>'agenda', 'dia'=>$dia]);
+
+        // return redirect(route('agendas.index'));
     }
 
     /**
@@ -126,6 +134,9 @@ class AgendaController extends AppBaseController
         $especialidades = Especialidad::pluck('nombre','id');
         $medicosall     = M_medico::all();
         $pacientesall   = M_paciente::all();
+
+        $medico_id      = $agenda->medico_id; 
+
         foreach($pacientesall as $pac){
             $paciente[$pac->id]         = $pac->primernombre . " " . $pac->primerapellido; 
             $pacientes = $paciente;
@@ -140,7 +151,8 @@ class AgendaController extends AppBaseController
             return redirect(route('agendas.index'));
         }
 
-        return view('agendas.edit', compact('agenda','pacientes','procedimientos','medicos','consultorios','clinicas','especialidades'));
+        return view('agendas.edit', compact('agenda','pacientes','procedimientos','medicos','consultorios',
+        'clinicas','especialidades','medico_id'));
     }
 
     /**
@@ -195,7 +207,7 @@ class AgendaController extends AppBaseController
     } 
 
     public function agendaDelDia($id){
-        return view('agendas.agenda', ['medico_id'=>$id, 'tipo'=>'agenda']);
+        return view('agendas.agenda', ['medico_id'=>$id, 'tipo'=>'agenda', 'dia'=>date('m/d/Y')]);
     }
 
     
@@ -215,8 +227,11 @@ class AgendaController extends AppBaseController
     }
 
     public function actualizarAgenda(Request $request){    
-        $input['fechaini'] = $request->fechaini;
-        $input['fechafin'] = $request->fechafin;
+        $input['fechaini']  = $request->fechaini;
+        $input['horaini']   = date('H:i',strtotime($request->fechaini));
+        $input['fechafin']  = $request->fechafin;
+        $input['horafin']   = date('H:i',strtotime($request->fechafin)); 
+
         Agenda::where('id', $request->id)
             ->update($input);
  
