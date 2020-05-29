@@ -1,13 +1,13 @@
 <!-- Medico Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('medico_id', 'Medico:') !!}
-    {!! Form::number('medico_id', null, ['class' => 'form-control']) !!}
+    {!! Form::select('medico_id', $medicos, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Ndia Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('ndia', 'Numero del dia:') !!}
-    {!! Form::text('ndia', null, ['class' => 'form-control']) !!}
+    {!! Form::label('ndia', 'Día de la semana:') !!}
+    {!! Form::text('ndia', @$ndia, ['class' => 'form-control', 'readonly'=>'readonly']) !!}
     {{-- <label class="checkbox-inline">
         {!! Form::hidden('ndia', 0) !!}
         {!! Form::checkbox('ndia', '1', null) !!}
@@ -23,14 +23,19 @@
 
 <!-- Hora Ini Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('hora_ini', 'Hora Ini:') !!}
-    {!! Form::text('hora_ini', null, ['class' => 'form-control']) !!}
+    {!! Form::label('horaini', 'Hora Ini:') !!}
+    {!! Form::text('horaini', @$horaini, ['class' => 'form-control','id'=>'horaini']) !!}
 </div>
 
 <!-- Hora Fin Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('hora_fin', 'Hora Fin:') !!}
-    {!! Form::text('hora_fin', null, ['class' => 'form-control']) !!}
+    {!! Form::label('horafin', 'Hora Fin:') !!}
+    {!! Form::text('horafin', @$horafin, ['class' => 'form-control','id'=>'horafin']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('tipo', 'Tipo:') !!}
+    {!! Form::select('tipo', $tipo, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Estado Field -->
@@ -70,5 +75,6 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('horarioMedicos.index') }}" class="btn btn-default">Cancel</a>
+    <a href="{{ url()->previous() }}" class="btn btn-default">Cancel</a>
 </div>
+<script type="text/javascript" src="{{ URL('js/agenda/horario_medico/fields.js') }}"  defer="defer"></script>

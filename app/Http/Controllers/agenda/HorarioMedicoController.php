@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\agenda;
 
+use Illuminate\Support\Facades\Auth; 
 use App\Http\Requests\agenda\CreateHorarioMedicoRequest;
 use App\Http\Requests\agenda\UpdateHorarioMedicoRequest;
 use App\Repositories\agenda\HorarioMedicoRepository;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use App\Models\agenda\HorarioMedico; 
+use App\Models\maestros\M_medico; 
 
 class HorarioMedicoController extends AppBaseController
 {
@@ -55,13 +57,70 @@ class HorarioMedicoController extends AppBaseController
      */
     public function store(CreateHorarioMedicoRequest $request)
     {
-        $input = $request->all();
-
+        $input  =   $request->all(); 
+        // $cont   =   $this->validarExisteEvento($request);
+        // if($cont==3){
+        //     Flash::danger('El Horario del Medico no puede ser creado.');
+        //     return redirect(route('crearHorario',[$input['medico_id'], $input['ndia'],  $input['horaini']])); //$medico_id, $ndia, $horaini
+        // }
+        //dd($input);
+        $dia    =   "";
+        switch ($input['ndia']){
+            case 0: $dia = "Dom."; break;
+            case 1: $dia = "Lun."; break;
+            case 2: $dia = "Mar."; break;
+            case 3: $dia = "Mie."; break;
+            case 4: $dia = "Jue."; break;
+            case 5: $dia = "Vie."; break;
+            case 6: $dia = "Sab."; break;
+        }
+        $input['dia']               = $dia;
+        $input['usuariocrea_id']    = Auth::user()->id;
+        $input['usuariomod_id']     = Auth::user()->id;
+        $input['ip_creacion']       = $_SERVER['REMOTE_ADDR'];
+        $input['ip_modificacion']   = $_SERVER['REMOTE_ADDR'];
         $horarioMedico = $this->horarioMedicoRepository->create($input);
 
         Flash::success('Horario Medico saved successfully.');
 
-        return redirect(route('horarioMedicos.index'));
+        return redirect(route('horarioMedico',[$input['medico_id']]));
+    }
+
+    public function validaAgregarHorarioMedico(Request $request){ 
+        
+        $horarios   = $this->horarioMedicoRepository->all(['medico_id'=>$request->medico_id, 
+        'ndia' => $request->ndia]);
+        if(count($horarios)==3){
+            $data['estado'] = "error";
+            $data['msj']    = "Ya no se puede agregar más horarios a este día";
+        }else{
+            $data['estado'] = "ok";
+            $data['msj']    = "ok";
+        }
+        return response()->json($data); 
+    }
+
+    public function validaAgregarHorarioMedico2(Request $request){ 
+        
+        $horario   = HorarioMedico::find($request->id);
+        // dd($horario->ndia);
+        if($horario->ndia!=$request->ndia){
+            $horarios   = $this->horarioMedicoRepository->all(['medico_id'=>$request->medico_id, 
+            'ndia' => $request->ndia]);
+            if(count($horarios)==3){
+                $data['estado'] = "error";
+                $data['msj']    = "Ya no se puede agregar más horarios a este día";
+            }else{
+                $data['estado'] = "ok";
+                $data['msj']    = "ok";
+            }
+            // $data['estado'] = "error";
+            // $data['msj']    = "Ya no se puede agregar más horarios a este día";
+        }else{
+            $data['estado'] = "ok";
+            $data['msj']    = "ok";
+        }
+        return response()->json($data); 
     }
 
     /**
@@ -94,6 +153,21 @@ class HorarioMedicoController extends AppBaseController
     public function edit($id)
     {
         $horarioMedico = $this->horarioMedicoRepository->find($id);
+        // dd($horarioMedico);
+        // $medicos    = M_medico::find($horarioMedico->medico_id);
+        $medicosall     = M_medico::where('id','=',$horarioMedico->medico_id)->get();  
+        $medicos        = '[]';
+        foreach($medicosall as $row){
+            $medico[$row->id]         = $row->usuario->name; 
+            $medicos = $medico;
+        } 
+
+        $ndia       = $horarioMedico->ndia;
+
+        $tipo       = array('1'=>'Normal', '2'=>'Almuerzo');
+
+        $horaini    = $horarioMedico->horaini;
+        $horafin    = $horarioMedico->horafin;
 
         if (empty($horarioMedico)) {
             Flash::error('Horario Medico not found');
@@ -101,7 +175,8 @@ class HorarioMedicoController extends AppBaseController
             return redirect(route('horarioMedicos.index'));
         }
 
-        return view('horario_medicos.edit')->with('horarioMedico', $horarioMedico);
+        return view('horario_medicos.edit', ['horarioMedico'=>$horarioMedico, 'medicos'=>$medicos, 'tipo'=>$tipo, 
+        'ndia'=>$ndia, 'horaini'=>$horaini, 'horafin'=>$horafin]);
     }
 
     /**
@@ -156,7 +231,8 @@ class HorarioMedicoController extends AppBaseController
     }
 
     public function horarioMedico($id){
-        return view('horario_medicos.horario_medico', ['medico_id'=>$id, 'tipo'=>'agenda']);
+        $medico = M_medico::find($id);
+        return view('horario_medicos.horario_medico', ['medico_id'=>$id, 'tipo'=>'agenda', 'medico'=>$medico]);
     }
 
     public function getHorarioMedico($id)
@@ -168,12 +244,19 @@ class HorarioMedicoController extends AppBaseController
         $week = date('W');  
         $dayofweek = array ('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'); 
         foreach($horario as $row){
+            if($row->tipo==1){
+                $label = "Horario de atención al paciente";     $color = "#1E90FF";
+            }else{
+                $label = "Horario de almuezo / Lunch";          $color = "#FF4500";
+            }
             $evento['id']     = $row->id;             
-            $evento['title']  = $row->dia;       
+            $evento['title']  = "$row->dia, $label";       
             $fecha            = date("Y-m-d", strtotime($dayofweek[$row->ndia].' this week')); 
             $evento['start']  = $fecha.' '.$row->horaini;  
             $evento['end']    = $fecha.' '.$row->horafin;   
             $evento['ndia']   = $row->ndia;   
+            $evento['color']  = $color;   
+            
             
             $data[] = $evento;    
         }
@@ -190,10 +273,25 @@ class HorarioMedicoController extends AppBaseController
     }
 
     
-    public function crearHorario($ndia, $horaini)
+    public function crearHorario($medico_id, $ndia, $horaini)
     {
-        $horafin = '18:00:00';
-        return view('horario_medicos.create',compact('ndia','horaini','horafin'));
+        $medicosall     = M_medico::where('id','=',$medico_id)->get();  
+        $medicos        = '[]';
+        foreach($medicosall as $row){
+            $medico[$row->id]         = $row->usuario->name; 
+            $medicos = $medico;
+        } 
+        $mediodia = '12:00';
+        // dd(strtotime($horaini)." >> ".strtotime($mediodia));
+
+        if(strtotime($horaini) > strtotime($mediodia)){
+            $horafin = '18:00:00';
+        }else{
+            $horafin = '12:00:00';
+        }
+        
+        $tipo = array('1'=>'Normal', '2'=>'Almuerzo');
+        return view('horario_medicos.create',compact('ndia','horaini','horafin','medicos','tipo'));
         // return view('agendas.create',compact('ndia','horaini','horafin'));
     }
 
@@ -205,32 +303,26 @@ class HorarioMedicoController extends AppBaseController
 
         $ndia = date('N', strtotime($request->fechaini));
         // dd($horarioMedico->id);
-        $horarios       = $this->horarioMedicoRepository->all(['medico_id'=>$horarioMedico->medico_id, 'ndia' => $ndia]);
-         
+        $horarios       = $this->horarioMedicoRepository->all(['id !='=>$request->id,'medico_id'=>$request->medico_id, 
+        'ndia' => $ndia]);
         $data = array();
         // dd("$ndia == $horarioMedico->ndia");
         if(count($horarios)>0){
-
             $data['estado'] = "error";
-            $data['msj'] = "No se pueden realizar los cambios\n Ya existe un horario registrado para este dia";
-            
+            $data['msj'] = "No se pueden realizar los cambios<br>Ya existe un horario registrado para este dia";
         }else{
-            
             $request->fechafin = str_replace('T', ' ', $request->fechafin);
             $horafin = date('H:i', strtotime($request->fechafin));
             
             $input['horaini']   = $horaini;
             $input['horafin']   = $horafin;
             $input['ndia']      = $ndia;
-    
+            // dd($input);
             HorarioMedico::where('id', $request->id)->update($input);
             $data['estado'] = "ok";
             $data['res'] = "Cambios realizados con éxito";
             
         }
-
-        
-        
         return response()->json($data); 
     }
 }

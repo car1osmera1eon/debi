@@ -26,27 +26,27 @@
         
         <!-- Primernombre Field -->
         <div class="form-group">
-            {!! Form::label('primernombre', 'Primer nombre:', ['class' => 'text-bold']) !!}
-            <p>{{ $mPaciente->primernombre }}</p>
+            {!! Form::label('primernombre', 'Nombres Completos', ['class' => 'text-bold']) !!}
+            <p>{{ $mPaciente->primernombre }} {{ $mPaciente->segundonombre }} {{ $mPaciente->primerapellido }} {{ $mPaciente->segundoapellido }}</p>
         </div>
         
         <!-- Segundonombre Field -->
-        <div class="form-group">
+        {{-- <div class="form-group">
             {!! Form::label('segundonombre', 'Segundo nombre:', ['class' => 'text-bold']) !!}
             <p>{{ $mPaciente->segundonombre }}</p>
-        </div>
+        </div> --}}
         
         <!-- Primerapellido Field -->
-        <div class="form-group">
+        {{-- <div class="form-group">
             {!! Form::label('primerapellido', 'Primer apellido:', ['class' => 'text-bold']) !!}
             <p>{{ $mPaciente->primerapellido }}</p>
-        </div>
+        </div> --}}
         
         <!-- Segundoapellido Field -->
-        <div class="form-group">
+        {{-- <div class="form-group">
             {!! Form::label('segundoapellido', 'Segundo apellido:', ['class' => 'text-bold']) !!}
             <p>{{ $mPaciente->segundoapellido }}</p>
-        </div>
+        </div> --}}
         
         <!-- Fecha Nacimiento Field -->
         <div class="form-group">
@@ -77,6 +77,12 @@
             {!! Form::label('lugar_inscripcion', 'Lugar Inscripcion:', ['class' => 'text-bold']) !!}
             <p>{{ $mPaciente->lugar_inscripcion }}</p>
         </div> 
+        
+        <!-- Observaciones Field -->
+        <div class="form-group">
+            {!! Form::label('observaciones', 'Observaciones:', ['class' => 'text-bold']) !!}
+            <p>{{ $mPaciente->observaciones }}</p>
+        </div>
         
     </div>
 
@@ -121,12 +127,6 @@
         <div class="form-group">
             {!! Form::label('codigo_parroquia', 'Parroquia:', ['class' => 'text-bold']) !!}
             <p>{{ $mPaciente->parroquia->nombre_m_parroquia }}</p>
-        </div>
-        
-        <!-- Observaciones Field -->
-        <div class="form-group">
-            {!! Form::label('observaciones', 'Observaciones:', ['class' => 'text-bold']) !!}
-            <p>{{ $mPaciente->observaciones }}</p>
         </div>
         
         <!-- Telefono Field -->

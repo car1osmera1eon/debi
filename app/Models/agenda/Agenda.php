@@ -185,7 +185,7 @@ class Agenda extends Model
      **/
     public function usuarioconfirma()
     {
-        return $this->belongsTo(\App\Models\User::class, 'usuarioconfirma_id');
+        return $this->belongsTo(\App\User::class, 'usuarioconfirma_id');
     }
 
     /**
@@ -193,7 +193,7 @@ class Agenda extends Model
      **/
     public function usuariocrea()
     {
-        return $this->belongsTo(\App\Models\User::class, 'usuariocrea_id');
+        return $this->belongsTo(\App\User::class, 'usuariocrea_id');
     }
 
     /**
@@ -201,6 +201,16 @@ class Agenda extends Model
      **/
     public function usuariomod()
     {
-        return $this->belongsTo(\App\Models\User::class, 'usuariomod_id');
+        return $this->belongsTo(\App\User::class, 'usuariomod_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    
+
+    // public function getTotalLikesAttribute()
+    // {
+    //     return $this->hasMany(App\Models\maestros\M_medico::class)->where->where('medico_id',$medico->id)->whereYear('fechaini',date('Y'))->where('estado',1)->count(); 
+    // }
 }

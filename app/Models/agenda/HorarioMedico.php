@@ -39,11 +39,12 @@ class HorarioMedico extends Model
         'medico_id',
         'ndia',
         'dia',
-        'hora_ini',
-        'hora_fin',
+        'horaini',
+        'horafin',
+        'tipo',
         'estado',
-        'id_usuariocrea',
-        'id_usuariomod',
+        'usuariocrea_id',
+        'usuariomod_id',
         'ip_creacion',
         'ip_modificacion'
     ];
@@ -54,15 +55,16 @@ class HorarioMedico extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'medico_id' => 'integer',
-        'ndia' => 'integer',
-        'dia' => 'string',
-        'estado' => 'boolean',
-        'id_usuariocrea' => 'string',
-        'id_usuariomod' => 'string',
-        'ip_creacion' => 'string',
-        'ip_modificacion' => 'string'
+        'id'                => 'integer',
+        'medico_id'         => 'integer',
+        'ndia'              => 'integer',
+        'dia'               => 'string',
+        'tipo'              => 'integer',
+        'estado'            => 'boolean',
+        'usuariocrea_id'    => 'string',
+        'usuariomod_id'     => 'string',
+        'ip_creacion'       => 'string',
+        'ip_modificacion'   => 'string'
     ];
 
     /**
@@ -72,16 +74,19 @@ class HorarioMedico extends Model
      */
     public static $rules = [
         'medico_id' => 'required',
-        'ndia' => 'required',
-        'dia' => 'required',
-        'hora_ini' => 'required',
-        'hora_fin' => 'required',
-        'estado' => 'required',
-        'id_usuariocrea' => 'required',
-        'id_usuariomod' => 'required',
-        'ip_creacion' => 'required',
-        'ip_modificacion' => 'required'
+        'ndia'      => 'required', 
+        'tipo'      => 'required', 
+        'horaini'   => 'required',
+        'horafin'   => 'required', 
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function medico()
+    {
+        return $this->belongsTo(\App\Models\maestros\M_medico::class, 'medico_id');
+    }
 
     
 }

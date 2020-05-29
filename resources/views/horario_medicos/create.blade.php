@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Horario Medico
+            Horario del Medico
         </h1>
     </section>
     <div class="content">

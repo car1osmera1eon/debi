@@ -49,6 +49,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebMaestros();
 
         $this->mapWebAgenda();
+
+        $this->mapWebFormOdon();
         //
     }
 
@@ -99,5 +101,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
         ->namespace($this->namespace)
         ->group(base_path('routes/agenda/web_agenda.php'));
+    }
+
+    protected function mapWebFormOdon()
+    {
+        Route::middleware('web')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/formularios/web_formOdon.php'));
     }
 }

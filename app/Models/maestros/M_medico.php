@@ -81,4 +81,14 @@ class M_medico extends Model
     {
         return $this->belongsTo(\App\Models\maestros\Especialidad::class, 'especialidad_id');
     }
+
+    public function agendas()
+    {
+        return $this->hasMany(\App\Models\agenda\Agenda::class, 'id', 'medico_id');
+    }
+
+    public function agendasxanio()
+    {
+        return $this->hasMany(\App\Models\agenda\Agenda::class, 'medico_id', 'id')->whereYear('fechaini',date('Y'))->where('estado',1)->count();
+    }
 }

@@ -55,6 +55,8 @@
     <!--Select2-->
     <link href="{{ URL::asset('nifty/demo/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 
+    <!--Summernote-->
+    <link href="{{ URL::asset('nifty/demo/plugins/summernote/summernote.min.css') }}" rel="stylesheet">
     <!--=================================================
 
     REQUIRED
@@ -590,10 +592,10 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        <li class="col-xs-3" data-content="Actividad">
-                                            <a class="shortcut-grid" href="#">
+                                        <li class="col-xs-3" data-content="Inicio">
+                                            <a class="shortcut-grid" href="../home">
                                                 <div class="icon-wrap icon-wrap-sm icon-circle bg-success">
-                                                <i class="pli-computer-secure"></i>
+                                                <i class="pli-home"></i>
                                                 </div>
                                             </a>
                                         </li>
@@ -798,6 +800,7 @@
     <!-- <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js" ></script> -->
     <script src="http://www.themeon.net/nifty/v2.9.1/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js" ></script>
     <script src="{{ URL::asset('nifty/demo/plugins/select2/js/select2.min.js') }}" ></script>
+    <script src="{{ URL::asset('nifty/demo/plugins/summernote/summernote.min.js') }}" ></script>
 
 
 </body>

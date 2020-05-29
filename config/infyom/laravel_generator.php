@@ -1,7 +1,7 @@
 <?php
-$path = "agenda/";
-$route = "web_agenda.php";
-$namespace = "\agenda";
+$path = "formularios/";
+$route = "web_formOdon.php";
+$namespace = "\formularios";
 return [
 
     /*

@@ -9,6 +9,7 @@ use App\Models\perfiles\Sistema;
 use App\Models\Usuario;
 use App\Models\perfiles\Perfil_usuario;
 use App\Models\maestros\M_medico;
+use App\Models\agenda\Agenda;
 
 class HomeController extends Controller
 {

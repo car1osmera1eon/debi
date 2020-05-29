@@ -20,11 +20,12 @@ class HorarioMedicoRepository extends BaseRepository
         'medico_id',
         'ndia',
         'dia',
-        'hora_ini',
-        'hora_fin',
+        'horaini',
+        'horafin',
+        'tipo',
         'estado',
-        'id_usuariocrea',
-        'id_usuariomod',
+        'usuariocrea_id',
+        'usuariomod_id',
         'ip_creacion',
         'ip_modificacion'
     ];

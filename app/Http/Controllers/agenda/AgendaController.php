@@ -16,8 +16,10 @@ use App\Models\maestros\M_consultorio;
 use App\Models\maestros\M_clinica; 
 use App\Models\maestros\Especialidad; 
 use App\Models\agenda\Agenda; 
+use App\Models\agenda\HorarioMedico; 
 use Flash;
-use Response;
+use Response; 
+use App\Menu; 
 
 class AgendaController extends AppBaseController
 {
@@ -38,6 +40,7 @@ class AgendaController extends AppBaseController
      */
     public function index(Request $request)
     {
+        Menu::seleccionMenu('Odontología ', 'Consulta');
         $agendas = $this->agendaRepository->all();
 
         return view('agendas.index')
@@ -206,14 +209,68 @@ class AgendaController extends AppBaseController
         return redirect(route('agendas.index'));
     } 
 
-    public function agendaDelDia($id){
-        return view('agendas.agenda', ['medico_id'=>$id, 'tipo'=>'agenda', 'dia'=>date('m/d/Y')]);
+    public function agendaDelDia($id, $tipo="agenda"){
+        if ($id==0) {
+            $id = Auth::user()->id;
+        }
+        $horario    = HorarioMedico::where('medico_id', '=', $id)
+        ->where('tipo', '=', 1)
+        ->select()
+        ->get();
+        $bussinesHour = array();
+        foreach($horario as $row){
+            $hours['dow']   = $row->ndia;
+            $hours['start'] = "$row->horaini";
+            $hours['end']   = "$row->horafin";
+            $bussinesHour[] = $hours;
+        } 
+        $string = "[";
+        foreach($horario as $row){
+            $string .= "{";
+            $string .= "dow: [$row->ndia], "; 
+            $string .= "start: `$row->horaini`, "; 
+            $string .= "end: `$row->horafin` "; 
+            $string .= "},";
+        } 
+        $string .= "]";
+        $medico = M_medico::find($id);
+        return view('agendas.agenda', ['medico_id'=>$id, 'tipo'=>$tipo, 'dia'=>date('m/d/Y'), 'horario'=>$horario, 
+        'bussinesHour'=>json_encode($bussinesHour), 'string' => utf8_encode($string), 'medico'=>$medico]);
     }
 
+    public function agendaDia(){
+        Menu::seleccionMenu('Odontología ', 'Agenda');
+        $tipo       = "agenda"; 
+        $id         = Auth::user()->id;
+        $horario    = HorarioMedico::where('medico_id', '=', $id)
+        ->where('tipo', '=', 1)
+        ->select()
+        ->get();
+        $bussinesHour = array();
+        foreach($horario as $row){
+            $hours['dow']   = $row->ndia;
+            $hours['start'] = "$row->horaini";
+            $hours['end']   = "$row->horafin";
+            $bussinesHour[] = $hours;
+        } 
+        $string = "[";
+        foreach($horario as $row){
+            $string .= "{";
+            $string .= "dow: [$row->ndia], "; 
+            $string .= "start: `$row->horaini`, "; 
+            $string .= "end: `$row->horafin` "; 
+            $string .= "},";
+        } 
+        $string .= "]";
+        $medico = M_medico::find($id);
+        return view('agendas.agenda', ['medico_id'=>$id, 'tipo'=>$tipo, 'dia'=>date('m/d/Y'), 'horario'=>$horario, 
+        'bussinesHour'=>json_encode($bussinesHour), 'string' => utf8_encode($string), 'medico'=>$medico]);
+    }
     
     public function agendaMedico($id){ 
-        $data = array();    $evento = array();
-        $agenda = $this->agendaRepository->all(['medico_id'=>$id]); 
+        $data       = array();    $evento = array();
+        $agenda     = $this->agendaRepository->all(['medico_id'=>$id]); 
+        
         foreach($agenda as $row){
             $evento['id']     = $row->id;             
             $evento['title']  = "Procedimiento: ".$row->procedimiento->nombre.", Paciente: ".$row->paciente->primernombre." ".$row->paciente->primerapellido;     
@@ -224,6 +281,32 @@ class AgendaController extends AppBaseController
             $data[] = $evento;    
         }
         return response()->json($data); 
+    }
+
+    public function horarioLaboralMed($id){ 
+        $data       = array();    $evento = array();
+        $horario    = HorarioMedico::where('medico_id', '=', $id)->where('tipo', '=', 1)->get();
+        
+        $string = "[";
+        foreach($horario as $row){
+            $string .= "{";
+            $string .= "dow: [$row->ndia], "; 
+            $string .= "start: '$row->horaini', "; 
+            $string .= "end: '$row->horafin' "; 
+            $string .= "},";
+        } 
+        $string .= "]";
+        echo $string; 
+        return;
+        // $bussinesHour = array();
+        // foreach($horario as $row){
+        //     $hours['dow']   = $row->ndia;
+        //     $hours['start'] = "$row->horaini";
+        //     $hours['end']   = "$row->horafin";
+        //     $bussinesHour[] = $hours;
+        // } 
+        // return response()->json($bussinesHour); 
+        
     }
 
     public function actualizarAgenda(Request $request){    

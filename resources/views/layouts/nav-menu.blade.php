@@ -18,16 +18,31 @@
             <ul @if(Session::get('modulo')==$modulos['modulo_id'])  class="collapse in" @else  class="collapse" @endif>
                 @foreach ($modulos[$modulos['modulo_id']] as $sub)
                     @if(isset($sub[$sub['submodulo_id']]) and count($sub[$sub['submodulo_id']])==0)
-                        <li @if(Session::get('submodulo')==$sub['submodulo_id']) class="active-link" @endif ><a href="{{route($sub['link'])}}">{{$sub['nom_submodulo']}} </a></li>
+                        <li @if(Session::get('submodulo')==$sub['submodulo_id']) class="active-link" @endif >
+                            <a href="{{route($sub['link'])}}">
+                                <i class="{{$sub['icono']}}"></i>
+                                {{$sub['nom_submodulo']}} 
+                            </a>
+                        </li>
                     @else
                     <li>
-                        <a @if(Session::get('submodulo')==$sub['submodulo_id']) aria-expanded="true" @endif href="#">{{$sub['nom_submodulo']}}<i class="arrow"></i></a>
+                        
+                        <a @if(Session::get('submodulo')==$sub['submodulo_id']) aria-expanded="true" @endif href="#">
+                            <i class="{{$sub['icono']}}"></i>
+                            {{$sub['nom_submodulo']}}
+                            <i class="arrow"></i>
+                        </a>
 
                         <!--Submenu2-->
                         <ul @if(Session::get('submodulo')==$sub['submodulo_id']) class="collapse in" aria-expanded="true" 
                             @else class="collapse" @endif >
                             @foreach ($sub[$sub['submodulo_id']] as $sub2)
-                                <li @if(Session::get('submodulo2')==$sub2['submodulo2_id']) class="active-link" @endif ><a href="{{ $sub2['link']}}">{{ $sub2['nom_submodulo2']}}</a></li>
+                                <li @if(Session::get('submodulo2')==$sub2['submodulo2_id']) class="active-link" @endif >
+                                    <a href="{{route($sub2['link'])}}">
+                                        <i class="{{$sub2['icono']}}"></i>
+                                        {{ $sub2['nom_submodulo2']}}
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
                     </li>

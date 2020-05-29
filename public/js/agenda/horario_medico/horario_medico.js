@@ -16,62 +16,118 @@ $.post( url_horario, { _token: token },
             editable:       true,
             selectable:     true,
             minTime:        "07:00:00",
-            maxTime:        "22:00:00",
-            // businessHours: {
-            //     // days of week. an array of zero-based day of week integers (0=Sunday)
-            //     dow: [ 1, 2, 3, 4, 5 ], 
-            //     start: '09:00', // a start time (09am in this example)
-            //     end: '20:00', // an end time (8pm in this example) 
-            // },
-            // selectConstraint: "businessHours",
-            // eventClick: function (calEvent,jsEvent,view) { 
-            //     alert(calEvent.id);
-            // },
+            maxTime:        "22:00:00", 
             eventDrop: function(event, delta, revertFunc){
                 // alert(event.title + " " + event.start.format() );
                 // alert(url_update); return; 
+
+                //////////////////////////////
+                $.post(url_validacion2,
+                    {
+                        id: event.id,
+                        ndia: event.start.day(), 
+                        medico_id: medico_id,
+                        _token: token
+                    },
+                    function(res, status){
+                        
+                        if(res.estado=="ok"){
+                            // bootbox.alert(res.msj);
+                            $.post(url_update,
+                                {
+                                    id: event.id,
+                                    fechaini: event.start.format(),
+                                    fechafin: event.end.format(),
+                                    _token: token
+                                },
+                                function(res, status){
+                                    
+                                    if(res.estado=="ok"){ 
+                                        bootbox.alert(res.msj);
+                                    }else{
+                                        bootbox.alert(res.msj);
+                                        alert();
+                                        revertFunc();
+                                    }
+                                    
+                                }
+                            ); 
+                        }else{
+                            bootbox.alert(res.msj); 
+                            revertFunc();
+                            return;
+                        }
+                        
+                      }
+                ); 
+                //////////////////////////////
+
+                
+            },
+            eventResize: function(event, delta, revertFunc){  
                 $.post(url_update,
-                {
-                    id: event.id,
-                    fechaini: event.start.format(),
-                    fechafin: event.end.format(),
-                    _token: token
-                },
-                function(res, status){
-                    
-                    if(res.estado=="ok"){
-                        bootbox.alert(res.msj);
-                    }else{
-                        bootbox.alert(res.msj);
-                        revertFunc();
+                    {
+                        id: event.id,
+                        fechaini: event.start.format(),
+                        fechafin: event.end.format(),
+                        _token: token
                     }
-                    
-                  }
                 ); 
             },
+            eventRender: function(event, element) {
+                element.bind('dblclick', function() {  
+                    url_editar = url_editar.replace('evento_id', event.id); 
+                    // alert(url_editar);
+                    location.href = url_editar;
+                });
+             },
             select: function(startDate, endDate) {
                 // bootbox.alert('selected ' + startDate.format() + ' to ' + endDate.format());
-                bootbox.confirm({
-                    message: "Desea agregar este dia: "+ startDate.format('dddd') + " a " + startDate.format('h:mm') +" al horario? " ,
-                    buttons: {
-                        confirm: {
-                            label: 'Si',
-                            className: 'btn-success'
-                        },
-                        cancel: {
-                            label: 'No',
-                            className: 'btn-danger'
-                        }
+
+                $.post(url_validacion,
+                    {
+                        id: event.id,
+                        ndia: startDate.day(), 
+                        medico_id: medico_id,
+                        _token: token
                     },
-                    callback: function (result) {
-                        if(result){
-                            url_crear = url_new.replace('ndia', startDate.format('h:mm')); 
-                            url_crear = url_crear.replace('horaini', startDate.day());   
-                            location.href = url_crear;
+                    function(res, status){
+                        
+                        if(res.estado=="ok"){
+                            // bootbox.alert(res.msj);
+                            bootbox.confirm({
+                                message: "Desea agregar este dia: "+ startDate.format('dddd') + " a " + startDate.format('H:mm') +" al horario? " ,
+                                buttons: {
+                                    confirm: {
+                                        label: 'Si',
+                                        className: 'btn-success'
+                                    },
+                                    cancel: {
+                                        label: 'No',
+                                        className: 'btn-danger'
+                                    }
+                                },
+                                callback: function (result) {
+                                    if(result){
+                                        url_crear = url_new.replace('ndia', startDate.day()); 
+                                        url_crear = url_crear.replace('horaini', startDate.format('H:mm'));   
+                                        url_crear = url_crear.replace('medico_id', medico_id);   
+                                        location.href = url_crear;
+                                    }
+                                    console.log('Crear agenda');
+                                }
+                            });
+
+                        }else{
+                            bootbox.alert(res.msj); 
+                            return;
                         }
-                        console.log('Crear agenda');
-                    }
-                });
+                        
+                      }
+                ); 
+
+                
+
             },
         })
     }

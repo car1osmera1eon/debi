@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@extends('from_odonts.breadcrumb') 
 @section('content')
     <section class="content-header">
         <h1>

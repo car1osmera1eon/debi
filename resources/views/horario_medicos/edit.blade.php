@@ -1,9 +1,9 @@
-@extends('layouts.app')
-
+@extends('layouts.main')
+@include('horario_medicos.breadcrumb')
 @section('content')
     <section class="content-header">
         <h1>
-            Horario Medico
+            Horario Medico {{ $medicos[$horarioMedico->medico_id] }}
         </h1>
    </section>
    <div class="content">
