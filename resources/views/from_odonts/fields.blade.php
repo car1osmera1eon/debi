@@ -66,7 +66,7 @@
             @include('from_odonts.fields.indicadores')
         </div>
         <div id="demo-stk-lft-tab-9" class="tab-pane fade">
-            @include('from_odonts.fields.diagnostico2')
+            @include('from_odonts.fields.diagnostico1')
         </div>
         <div id="demo-stk-lft-tab-10" class="tab-pane fade">
             @include('from_odonts.fields.diagnostico2')

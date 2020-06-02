@@ -14,6 +14,8 @@ use Flash;
 use Response;
 use App\Menu; 
 use App\Models\maestros\M_paciente; 
+use App\Models\maestros\FormOdonDiagPaci; 
+use App\Models\maestros\FromOdonTipoDiag;
 
 class FromOdontController extends AppBaseController
 {
@@ -112,6 +114,8 @@ class FromOdontController extends AppBaseController
         $fromOdont      = $this->fromOdontRepository->find($id);
         $pacientes      = "";
         $pacientesall   = M_paciente::where('id','=',$fromOdont->paciente_id)->get();
+        // $tipoDiag       = FromOdonTipoDiag::where('estado','=',1)->select('','')->get();
+        $tipoDiag       = FromOdonTipoDiag::pluck('tipo_diagnostico','id');
         foreach($pacientesall as $pac){
             $paciente[$pac->id]         = $pac->primernombre . " " . $pac->primerapellido; 
             $pacientes  = $paciente;
@@ -120,12 +124,12 @@ class FromOdontController extends AppBaseController
         $mPaciente      = $this->mPacienteRepository->find($fromOdont->paciente_id);
         // dd($mPaciente);
         if (empty($fromOdont)) {
-            Flash::error('From Odont not found');
+            Flash::error('Form Odontologia not found');
 
             return redirect(route('fromOdonts.index'));
         }
 
-        return view('from_odonts.edit', compact('fromOdont','pacientes','mPaciente'));
+        return view('from_odonts.edit', compact('fromOdont','pacientes','mPaciente','tipoDiag'));
     }
 
     /**
@@ -177,5 +181,26 @@ class FromOdontController extends AppBaseController
         Flash::success('From Odont deleted successfully.');
 
         return redirect(route('fromOdonts.index'));
+    }
+
+    public function getDiagnosticosPaciente($paciente_id){
+
+        return $diagnosticos    =   datatables()
+                                ->of(FormOdonDiagPaci::query(['paciente_id'=>$paciente_id, 'deleted_at is null'=>null])->get())
+                                ->addColumn('tipo', function($data){
+                                    $tipo = $data->tipoDiag->tipo_diagnostico;
+                                    return $tipo;
+                                    }
+                                )
+                                ->addColumn('action', function($data){
+                                    $button = "<button type='button' name='btn_edit' id='btn_edit'
+                                    class= 'btn btn-primary btn-icon' onclick='editar($data->id)'><i class='pli-edit'></i></button>&nbsp;";
+                                    $button .= "<button type='button' name='btn_delete' id='btn_delete'
+                                    class= 'btn btn-danger btn-icon'><i class='pli-trash'></i></button>";
+                                    return $button;
+                                    }
+                                )
+                                ->rawColumns(['action'])
+                                ->make(true);
     }
 }

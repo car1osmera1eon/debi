@@ -1,7 +1,7 @@
 <?php
-$path = "formularios/";
-$route = "web_formOdon.php";
-$namespace = "\formularios";
+$path = "maestros/";
+$route = "web_maestros.php";
+$namespace ='\maestros';
 return [
 
     /*

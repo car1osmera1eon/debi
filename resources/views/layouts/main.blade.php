@@ -59,6 +59,10 @@
     <link href="{{ URL::asset('nifty/demo/plugins/summernote/summernote.min.css') }}" rel="stylesheet">
     <!--=================================================
 
+    <!--Datatables-->
+    <link href="{{ URL::asset('nifty/demo/plugins/datatables/media/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <!--=================================================
+
     REQUIRED
     You must include this in your project.
 
@@ -801,6 +805,8 @@
     <script src="http://www.themeon.net/nifty/v2.9.1/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js" ></script>
     <script src="{{ URL::asset('nifty/demo/plugins/select2/js/select2.min.js') }}" ></script>
     <script src="{{ URL::asset('nifty/demo/plugins/summernote/summernote.min.js') }}" ></script>
+    <script src="{{ URL::asset('nifty/demo/plugins/datatables/media/js/jquery.dataTables.min.js') }}" ></script>
+    <script src="{{ URL::asset('nifty/demo/plugins/datatables/media/js/dataTables.bootstrap4.min.js') }}" ></script>
 
 
 </body>

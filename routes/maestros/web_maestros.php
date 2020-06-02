@@ -39,3 +39,5 @@ Route::resource('mProcedimientos', 'maestros\M_procedimientoController');
 Route::resource('mConsultorios', 'maestros\M_consultorioController');
 
 Route::resource('mCategorias', 'maestros\M_categoriaController');
+
+Route::resource('formOdonDiagPacis', 'Maestros\FormOdonDiagPaciController');

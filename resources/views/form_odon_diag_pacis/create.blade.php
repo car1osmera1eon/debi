@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Formulario de Odontologia
+            Form Odon Diag Paci
         </h1>
     </section>
     <div class="content">
@@ -11,9 +11,9 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'fromOdonts.store']) !!}
+                    {!! Form::open(['route' => 'formOdonDiagPacis.store']) !!}
 
-                        @include('from_odonts.fields')
+                        @include('form_odon_diag_pacis.fields')
 
                     {!! Form::close() !!}
                 </div>

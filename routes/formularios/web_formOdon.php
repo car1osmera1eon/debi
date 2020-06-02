@@ -13,3 +13,4 @@
 
 Route::resource('fromOdonts', 'formularios\FromOdontController');
 Route::match(['get', 'post'], 'formOdontPaciente/{paciente_id}', 'formularios\FromOdontController@formOdontPaciente')->name('fromOdonts.paciente'); 
+Route::match(['get', 'post'], 'getDiagnosticosPaciente/{paciente_id}', 'formularios\FromOdontController@getDiagnosticosPaciente')->name('fromOdonts.diagnosticos.paciente'); 
