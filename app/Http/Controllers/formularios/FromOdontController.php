@@ -196,11 +196,38 @@ class FromOdontController extends AppBaseController
                                     $button = "<button type='button' name='btn_edit' id='btn_edit'
                                     class= 'btn btn-primary btn-icon' onclick='editar($data->id)'><i class='pli-edit'></i></button>&nbsp;";
                                     $button .= "<button type='button' name='btn_delete' id='btn_delete'
-                                    class= 'btn btn-danger btn-icon'><i class='pli-trash'></i></button>";
+                                    class= 'btn btn-danger btn-icon' onclick='eliminar($data->id)'><i class='pli-trash'></i></button>";
                                     return $button;
                                     }
                                 )
                                 ->rawColumns(['action'])
                                 ->make(true);
+    }
+
+    public function diagosticoxId($id){
+        $diag      = FormOdonDiagPaci::where('id', '=', $id)->first();
+        // dd($diagPaci);
+        return response()->json($diag);
+    }
+
+    public function actualizarDiagnostico(Request $request){
+        // dd($request['id']);
+        $input['tipo_diag_id']  =  $request['tipo_diag_id'];   
+        $input['diagnostico']   =  $request['diagnostico'];   
+
+        FormOdonDiagPaci::where('id', $request->id)
+            ->update($input);
+        $resp['msg']    = "Registro actualizado con éxito";
+        return response()->json($resp);
+    }
+
+    public function eliminarDiagnostico(Request $request){
+        // dd($request['id']);
+        $input['deleted_at']  =  date('Y-m-d H:i:s');     
+
+        FormOdonDiagPaci::where('id', $request->id)
+            ->update($input);
+        $resp['msg']    = "Registro ha sido eliminado con éxito";
+        return response()->json($resp);
     }
 }

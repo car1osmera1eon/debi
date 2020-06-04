@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\maestros\Maestros;
+namespace App\Repositories\maestros;
 
 use App\Models\maestros\FormOdonDiagPaci;
 use App\Repositories\BaseRepository;
