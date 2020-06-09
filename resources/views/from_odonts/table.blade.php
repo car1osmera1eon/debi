@@ -88,9 +88,9 @@
                 <td>
                     {!! Form::open(['route' => ['fromOdonts.destroy', $fromOdont->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('fromOdonts.show', [$fromOdont->id]) }}" class='btn btn-default btn-xs'><i class="pli-eye"></i></a>
-                        <a href="{{ route('fromOdonts.edit', [$fromOdont->id]) }}" class='btn btn-default btn-xs'><i class="pli-file-edit"></i></a>
-                        {!! Form::button('<i class="pli-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                        <a href="{{ route('fromOdonts.show', [$fromOdont->id]) }}" class='btn btn-primary btn-icon' title="Ver"><i class="pli-eye"></i></a>
+                        <a href="{{ route('fromOdonts.edit', [$fromOdont->id]) }}" class='btn btn-default btn-icon' title="Editar"><i class="pli-file-edit"></i></a>
+                        {!! Form::button('<i class="pli-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-icon', 'title'=>"Borrar", 'onclick' => "return confirm('Are you sure?')"]) !!}
                     </div>
                     {!! Form::close() !!}
                 </td>

@@ -1,7 +1,7 @@
 <!-- Paciente Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('paciente_id', 'Paciente:', ['class' => 'text-bold']) !!}
-    {!! Form::select('paciente_id', $pacientes, null, ['class' => 'form-control', 'readonly' =>'readonly']) !!}
+    {!! Form::select('paciente_id', $pacientes, null, ['class' => 'form-control', 'id'=>'paciente_id', 'name'=>'paciente_id', 'readonly' =>'readonly']) !!}
 </div>
 
 <!-- Agenda Id Field -->

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\formularios;
 
+use Illuminate\Support\Facades\Auth; 
 use App\Http\Requests\formularios\CreateFromOdontRequest;
 use App\Http\Requests\formularios\UpdateFromOdontRequest;
 use App\Repositories\formularios\FromOdontRepository;
@@ -16,6 +17,7 @@ use App\Menu;
 use App\Models\maestros\M_paciente; 
 use App\Models\maestros\FormOdonDiagPaci; 
 use App\Models\maestros\FromOdonTipoDiag;
+use App\Models\maestros\FormOdonDiagPreDef;
 
 class FromOdontController extends AppBaseController
 {
@@ -193,9 +195,9 @@ class FromOdontController extends AppBaseController
                                     }
                                 )
                                 ->addColumn('action', function($data){
-                                    $button = "<button type='button' name='btn_edit' id='btn_edit'
+                                    $button = "<button type='button'
                                     class= 'btn btn-primary btn-icon' onclick='editar($data->id)'><i class='pli-edit'></i></button>&nbsp;";
-                                    $button .= "<button type='button' name='btn_delete' id='btn_delete'
+                                    $button .= "<button type='button'
                                     class= 'btn btn-danger btn-icon' onclick='eliminar($data->id)'><i class='pli-trash'></i></button>";
                                     return $button;
                                     }
@@ -208,6 +210,20 @@ class FromOdontController extends AppBaseController
         $diag      = FormOdonDiagPaci::where('id', '=', $id)->first();
         // dd($diagPaci);
         return response()->json($diag);
+    }
+
+    public function guardarDiagnostico(Request $request){
+        // dd($request['id']);
+        $input['form_odon_id']      =   $request['form_odon_id'];   
+        $input['tipo_diag_id']      =   $request['tipo_diag_id'];   
+        $input['diagnostico']       =   $request['diagnostico'];   
+        $input['paciente_id']       =   $request['paciente_id'];   
+        $input['usuariocrea_id']    =   Auth::user()->id;
+        $input['usuariomod_id']     =   Auth::user()->id;
+
+        FormOdonDiagPaci::insert($input);
+        $resp['msg']    = "Registro ingresado con éxito";
+        return response()->json($resp);
     }
 
     public function actualizarDiagnostico(Request $request){
@@ -229,5 +245,43 @@ class FromOdontController extends AppBaseController
             ->update($input);
         $resp['msg']    = "Registro ha sido eliminado con éxito";
         return response()->json($resp);
+    }
+
+    public function getDiagnosticosPacientePreDef($paciente_id){
+
+        return $diagnosticos    =   datatables()
+                                ->of(FormOdonDiagPreDef::query(['paciente_id'=>$paciente_id, 'deleted_at is null'=>null])->get())
+                                ->addColumn('tipo', function($data){
+                                    if($data->tipo==1){ $tipo = 'Presuntivo';}
+                                    if($data->tipo==2){ $tipo = 'Definitivo';}
+                                    return $tipo;
+                                    }
+                                )
+                                ->addColumn('diag_codigo', function($data){
+                                    $diag_codigo = $data->diagnostico->diag_codigo;
+                                    return $diag_codigo;
+                                    }
+                                )
+                                ->addColumn('diag_nombre', function($data){
+                                    $diag_nombre = $data->diagnostico->diag_nombre;
+                                    return $diag_nombre;
+                                    }
+                                )
+                                ->addColumn('action', function($data){
+                                    $button = "<button type='button'
+                                    class= 'btn btn-primary btn-icon' onclick='editar_d2($data->id)'><i class='pli-edit'></i></button>&nbsp;";
+                                    $button .= "<button type='button'
+                                    class= 'btn btn-danger btn-icon' onclick='eliminar_d2($data->id)'><i class='pli-trash'></i></button>";
+                                    return $button;
+                                    }
+                                )
+                                ->rawColumns(['action'])
+                                ->make(true);
+    }
+
+    public function diagosticopredefxId($id){
+        $diag      = FormOdonDiagPreDef::where('id', '=', $id)->first();
+        // dd($diagPaci);
+        return response()->json($diag);
     }
 }

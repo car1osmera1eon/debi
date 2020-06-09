@@ -10,6 +10,8 @@ $( document ).ready(function() {
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
         },
+        "paging":       false,
+        "searching":    false,
         "columns":      [
             { data:     'id'},
             { data:     'tipo'},
@@ -38,22 +40,55 @@ $( document ).ready(function() {
             contentType: "application/x-www-form-urlencoded; charset:ISO-8859-1",
             success: function(data)
             { 
-                $('#modal-edit').modal('hide');
+                $('#modal-edit-d1').modal('hide');
                 bootbox.alert(data.msg);
                 $('#table_diagnostico').DataTable().ajax.reload();
-                // table_diagnostico.ajax.reload();
-                // $('#id').val(id);   
-                // $('#diagnostico').val(data.diagnostico);   
-                // $("#form_odon_id").select2("val", data.plv_se_repite);  
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
-                $('#modal-edit').modal('hide');
+                $('#modal-edit-d1').modal('hide');
                 bootbox.alert('Error get data from ajax');
             }
         });
     });
 
+
+    $('#btn_d1_agregar').click(function(){
+        var paciente_id = $('#paciente_id').val()
+        $('#form-add')[0].reset();
+        $('#add_paciente_id').val(paciente_id);
+        $('#modal-agregar-d1').modal('show');
+        
+    });
+   
+    $('#btn_agregar').click(function(){
+        $.ajax({
+            url : url_guardar,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: "POST",
+            data: {
+                form_odon_id:   $('#id').val(),
+                paciente_id:    $('#add_paciente_id').val(),
+                tipo_diag_id:   $('#add_tipo_diag_id').val(),
+                diagnostico:    $('#add_diagnostico').val(),
+            },
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded; charset:ISO-8859-1",
+            success: function(data)
+            { 
+                $('#modal-agregar-d1').modal('hide');
+                bootbox.alert(data.msg);
+                $('#table_diagnostico').DataTable().ajax.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                $('#modal-agregar-d1').modal('hide');
+                bootbox.alert('Error get data from ajax');
+            }
+        });
+    });
 
 
 });
@@ -63,10 +98,9 @@ function reload_table_diagnostico()
     $('#table_diagnostico').DataTable().ajax.reload(); //reload datatable ajax
 }
 
-function editar(id){
-    $('#modal-edit').modal('show'); 
+function editar(id){ 
+    $('#modal-edit-d1').modal('show'); 
     url_diagpaci = url_diagpaci.replace('id', id);
-
 
     $.ajax({
         url : url_diagpaci,
@@ -78,12 +112,12 @@ function editar(id){
         { 
             $('#id').val(id);   
             $('#diagnostico').val(data.diagnostico);   
-            $("#form_odon_id").select2("val", data.plv_se_repite);  
+            $("#form_odon_id").select2("val", data.form_odon_id);  
             
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-            $('#modal-edit').modal('hide');
+            $('#modal-edit-d1').modal('hide');
             bootbox.alert('Error get data from ajax');
         }
     });
@@ -119,13 +153,13 @@ function eliminar(id){
                     contentType: "application/x-www-form-urlencoded; charset:ISO-8859-1",
                     success: function(data)
                     { 
-                        $('#modal-edit').modal('hide');
+                        $('#modal-edit-d1').modal('hide');
                         bootbox.alert(data.msg);
                         $('#table_diagnostico').DataTable().ajax.reload();
                     },
                     error: function (jqXHR, textStatus, errorThrown)
                     {
-                        $('#modal-edit').modal('hide');
+                        $('#modal-edit-d1').modal('hide');
                         bootbox.alert('Error get data from ajax');
                     }
                 });
@@ -133,5 +167,36 @@ function eliminar(id){
         }
     });
 
-    //block of code that runs when the click event triggers
+   
+
+    function agregar(){
+
+        $.ajax({
+            url : url_guardar,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: "POST",
+            data: {
+                form_odon_id:   $('#id').val(),
+                paciente_id:    $('#add_paciente_id').val(),
+                tipo_diag_id:   $('#add_tipo_diag_id').val(),
+                diagnostico:    $('#add_diagnostico').val(),
+            },
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded; charset:ISO-8859-1",
+            success: function(data)
+            { 
+                $('#modal-edit-d1').modal('hide');
+                bootbox.alert(data.msg);
+                $('#table_diagnostico').DataTable().ajax.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                $('#modal-edit-d1').modal('hide');
+                bootbox.alert('Error get data from ajax');
+            }
+        });
+    }
+
 }
