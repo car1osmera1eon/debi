@@ -15,6 +15,7 @@ use Flash;
 use Response;
 use App\Menu; 
 use App\Models\maestros\M_paciente; 
+use App\Models\maestros\M_diagnostico; 
 use App\Models\maestros\FormOdonDiagPaci; 
 use App\Models\maestros\FromOdonTipoDiag;
 use App\Models\maestros\FormOdonDiagPreDef;
@@ -114,16 +115,20 @@ class FromOdontController extends AppBaseController
     public function edit($id)
     {
         $fromOdont      = $this->fromOdontRepository->find($id);
-        $pacientes      = "";
+        $pacientes      = "[]";
+        $diagnosticos   = "[]";
         $pacientesall   = M_paciente::where('id','=',$fromOdont->paciente_id)->get();
         // $tipoDiag       = FromOdonTipoDiag::where('estado','=',1)->select('','')->get();
-        $tipoDiag       = FromOdonTipoDiag::pluck('tipo_diagnostico','id');
+        $tipoDiag       = FromOdonTipoDiag::pluck('tipo_diagnostico','id'); 
         foreach($pacientesall as $pac){
             $paciente[$pac->id]         = $pac->primernombre . " " . $pac->primerapellido; 
             $pacientes  = $paciente;
         } 
 
         $mPaciente      = $this->mPacienteRepository->find($fromOdont->paciente_id);
+
+        $tipo_predef[1] = "Presuntivo";   
+        $tipo_predef[2] = "Defenitivo";   
         // dd($mPaciente);
         if (empty($fromOdont)) {
             Flash::error('Form Odontologia not found');
@@ -131,7 +136,7 @@ class FromOdontController extends AppBaseController
             return redirect(route('fromOdonts.index'));
         }
 
-        return view('from_odonts.edit', compact('fromOdont','pacientes','mPaciente','tipoDiag'));
+        return view('from_odonts.edit', compact('fromOdont','pacientes','mPaciente','tipoDiag','tipo_predef'));
     }
 
     /**
@@ -284,4 +289,52 @@ class FromOdontController extends AppBaseController
         // dd($diagPaci);
         return response()->json($diag);
     }
+
+    public function autocompletarCie10(Request $request){
+        if($request->ajax()) {
+            // select cie10 name from database
+            $data = M_diagnostico::where('diag_codigo', 'LIKE', $request->cie10.'%')
+                ->get();
+            // declare an empty array for output
+            $output = '';
+            // if searched cie10 count is larager than zero
+            if (count($data)>0) {
+                // concatenate output to the array
+                $output = '<ul class="list-group" style="display: block; position: relative; z-index: 1">';
+                // loop through the result array
+                foreach ($data as $row){
+                    // concatenate output to the array
+                    $output .= '<li class="list-group-item">'.$row->diag_codigo.'|'.$row->diag_nombre.'</li>';
+                }
+                // end of output
+                $output .= '</ul>';
+            }
+            else {
+                // if there's no matching results according to the input
+                $output .= '<li class="list-group-item">'.'No results'.'</li>';
+            }
+            // return output result array
+            return $output;
+        }   
+    }
+
+
+    public function actualizarDiagnosticoPreDef(Request $request){
+        // dd($request['id']);
+        $input['tipo']          =  $request['tipo'];   
+        $input['observacion']   =  $request['observacion'];
+        list($input['cod_cie10'], $input['cie10']) = explode("|", $request['cie10']);   
+        if($input['cod_cie10']!=null){
+            $diag = M_diagnostico::where('diag_codigo', '=', $input['cod_cie10'])->first();
+            $input['id_cie10']   =  $diag->diag_id;
+
+            FormOdonDiagPreDef::where('id', $request->id)->update($input);
+            $resp['msg']    = "Registro actualizado con éxito";
+        }else{
+            $resp['msg']    = "Error al actualizar";
+        }
+        
+        return response()->json($resp);
+    }
+
 }

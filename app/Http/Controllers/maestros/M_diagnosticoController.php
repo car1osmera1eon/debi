@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\maestros\Maestros;
+namespace App\Http\Controllers\maestros;
 
-use App\Http\Requests\maestros\Maestros\CreateM_diagnosticoRequest;
-use App\Http\Requests\maestros\Maestros\UpdateM_diagnosticoRequest;
-use App\Repositories\maestros\Maestros\M_diagnosticoRepository;
+use App\Http\Requests\maestros\CreateM_diagnosticoRequest;
+use App\Http\Requests\maestros\UpdateM_diagnosticoRequest;
+use App\Repositories\maestros\M_diagnosticoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;

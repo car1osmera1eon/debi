@@ -45,7 +45,7 @@
                     <!-- Especialidad Id Field -->
                     <div class="form-group col-sm-12">
                         {!! Form::label('tipo', 'Tipo:') !!}
-                        {!! Form::select('tipo_diag_id',$tipoDiag, null, ['class' => 'form-control', 'id'=>'tipo_diag_id', 'name'=>'tipo_diag_id']) !!}
+                        {!! Form::select('tipo_diag_id',$tipoDiag, null, ['class' => 'form-control', 'id'=>'tipo_diag_id', 'name'=>'tipo_diag_id', 'style'=>'width: 100%']) !!}
                         {!! Form::hidden('id', null, ['class' => 'form-control', 'id'=>'id', 'name'=>'id']) !!}
                         {!! Form::hidden('md_paciente_id', null, ['class' => 'form-control', 'id'=>'md_paciente_id', 'name'=>'md_paciente_id']) !!}
                     </div>

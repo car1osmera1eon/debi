@@ -21,3 +21,5 @@ Route::match(['get', 'post'], 'eliminarDiagnostico/', 'formularios\FromOdontCont
 Route::match(['get', 'post'], 'getDiagnosticosPacientePreDef/{paciente_id}', 'formularios\FromOdontController@getDiagnosticosPacientePreDef')->name('fromOdonts.diagnosticos.predef.paciente'); 
 Route::match(['get', 'post'], 'diagosticopredefxId/{id}', 'formularios\FromOdontController@diagosticopredefxId')->name('fromOdonts.diagnosticos.predef.xid'); 
 Route::match(['get', 'post'], 'guardarDiagnostico/', 'formularios\FromOdontController@guardarDiagnostico')->name('fromOdonts.guardardiagnostico'); 
+Route::match(['get', 'post'], 'autocompletarCie10/', 'formularios\FromOdontController@autocompletarCie10')->name('fromOdonts.autocompletar.cie10'); 
+Route::match(['get', 'post'], 'actualizarDiagnosticoPreDef/', 'formularios\FromOdontController@actualizarDiagnosticoPreDef')->name('fromOdonts.actualizardiagnosticopredef'); 

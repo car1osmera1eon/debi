@@ -65,17 +65,17 @@ return [
 
     "namespace" => [
 
-        "model"             => "App\Models$namespace",
+        "model"             => "App\Models\maestros",
 
-        "datatables"        => "App\DataTables$namespace",
+        "datatables"        => "App\DataTables\maestros",
 
-        "repository"        => "App\Repositories$namespace",
+        "repository"        => "App\Repositories\maestros",
 
-        "controller"        => "App\Http\Controllers$namespace",
+        "controller"        => "App\Http\Controllers\maestros",
 
         "api_controller"    => "App\Http\Controllers\API",
 
-        "request"           => "App\Http\Requests$namespace",
+        "request"           => "App\Http\Requests\maestros",
 
         "api_request"       => "App\Http\Requests\API",
 

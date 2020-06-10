@@ -39,22 +39,28 @@
                 <h4 class="modal-title">Editar Diagnostico</h4>
             </div>
 
-            {!! Form::open(['route' => 'fromOdonts.actualizardiagnostico', 'id'=>'form-ajax']) !!}
+            {!! Form::open(['route' => 'fromOdonts.actualizardiagnostico', 'id'=>'form-md2-edit']) !!}
             <!--Modal body-->
             <div class="modal-body">
                 <p class="text-semibold text-main">Paciente</p>
                 <div class="row">
-                    <!-- Especialidad Id Field -->
+                    <!-- Tipo Id Field -->
                     <div class="form-group col-sm-12">
                         {!! Form::label('tipo', 'Tipo:') !!}
-                        {!! Form::select('tipo_diag_id',$tipoDiag, null, ['class' => 'form-control', 'id'=>'tipo_diag_id', 'name'=>'tipo_diag_id']) !!}
-                        {!! Form::hidden('id', null, ['class' => 'form-control', 'id'=>'id', 'name'=>'id']) !!}
+                        {!! Form::select('md2_tipo',$tipo_predef, null, ['class' => 'form-control', 'id'=>'md2_tipo', 'name'=>'md2_tipo', 'style'=>'width: 100%']) !!}
+                        {!! Form::hidden('md2_id', null, ['class' => 'form-control', 'id'=>'md2_id', 'name'=>'md2_id']) !!}
+                        {!! Form::hidden('md2_paciente_id', null, ['class' => 'form-control', 'id'=>'md2_paciente_id', 'name'=>'md2_paciente_id']) !!}
                     </div>
-    
-                    <!-- Observaciones Field -->
+                    <!-- CIE10 Id Field -->
                     <div class="form-group col-sm-12">
-                        {!! Form::label('diagnostico', 'Diagnostico:') !!}
-                        {!! Form::textarea('diagnostico', null, ['class' => 'form-control']) !!}
+                        {!! Form::label('md2_cie10', 'cie10:') !!}
+                        {!! Form::text('md2_cie10',null, ['class' => 'form-control', 'id'=>'md2_cie10', 'name'=>'md2_cie10']) !!}
+                    </div>
+                    <div id="md2_cie10_list"></div>
+                    <!-- Observacion Field -->
+                    <div class="form-group col-sm-12">
+                        {!! Form::label('md2_observacion', 'Obserbación:') !!}
+                        {!! Form::textarea('md2_observacioncie10', null, ['class' => 'form-control', 'id'=>'md2_observacioncie10', 'name'=>'md2_observacioncie10']) !!}
                     </div>
                 </div>
                 
@@ -63,7 +69,7 @@
             <!--Modal footer-->
             <div class="modal-footer">
                 <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
-                <button type="button" id='btn_actualizar' name='btn_actualizar' class="btn btn-primary">Actualizar </button>
+                <button type="button" id='md2_btn_actualizar' name='btn_actualizar' class="btn btn-primary">Actualizar </button>
             </div>
         </div>
     </div>
@@ -74,11 +80,12 @@
 
 
 <script>
-    var token               =   "{{ csrf_token() }}";
-    var url_diagpredef      =   "{{route('fromOdonts.diagnosticos.predef.paciente',[$fromOdont->paciente_id])}}";
-    var url_diagpredefxid   =   "{{route('fromOdonts.diagnosticos.predef.xid',['id'])}}";
-    var url_actualizar      =   "{{route('fromOdonts.actualizardiagnostico')}}";
-    var url_eliminar        =   "{{route('fromOdonts.eliminardiagnostico')}}";
+    var token                   =   "{{ csrf_token() }}";
+    var url_diagpredef          =   "{{route('fromOdonts.diagnosticos.predef.paciente',[$fromOdont->paciente_id])}}";
+    var url_diagpredefxid       =   "{{route('fromOdonts.diagnosticos.predef.xid',['id'])}}";
+    var url_actualizarpredef    =   "{{route('fromOdonts.actualizardiagnosticopredef')}}";
+    var url_eliminar            =   "{{route('fromOdonts.eliminardiagnostico')}}";
+    var url_autocomplecie10     =   "{{ route('fromOdonts.autocompletar.cie10') }}";
     
 </script>
 <script src="{{ URL('js/formularios/diagnostico2.js') }}" defer></script>

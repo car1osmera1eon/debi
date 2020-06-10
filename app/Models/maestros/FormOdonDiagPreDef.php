@@ -15,7 +15,7 @@ class FormOdonDiagPreDef extends Model
      **/
     public function diagnostico()
     {
-        return $this->belongsTo(\App\Models\maestros\M_diagnostico::class, 'cie10', 'diag_id');
+        return $this->belongsTo(\App\Models\maestros\M_diagnostico::class, 'id_cie10', 'diag_id');
     }
 
 }

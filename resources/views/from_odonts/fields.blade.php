@@ -35,7 +35,7 @@
             <a data-toggle="tab" href="#demo-stk-lft-tab-10">Diagnostico Definitivo</a>
         </li>
         <li>
-            <a data-toggle="tab" href="#demo-stk-lft-tab-10">Tratamiento</a>
+            <a data-toggle="tab" href="#demo-stk-lft-tab-11">Tratamiento</a>
         </li>
     </ul>
 
@@ -71,7 +71,7 @@
         <div id="demo-stk-lft-tab-10" class="tab-pane fade">
             @include('from_odonts.fields.diagnostico2')
         </div>
-        <div id="demo-stk-lft-tab-10" class="tab-pane fade">
+        <div id="demo-stk-lft-tab-11" class="tab-pane fade">
             @include('from_odonts.fields.tratamiento')
         </div>
     </div>

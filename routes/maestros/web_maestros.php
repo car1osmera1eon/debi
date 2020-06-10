@@ -40,6 +40,6 @@ Route::resource('mConsultorios', 'maestros\M_consultorioController');
 
 Route::resource('mCategorias', 'maestros\M_categoriaController');
 
-Route::resource('formOdonDiagPacis', 'Maestros\FormOdonDiagPaciController');
+Route::resource('formOdonDiagPacis', 'maestros\FormOdonDiagPaciController');
 
-Route::resource('mDiagnosticos', 'Maestros\M_diagnosticoController');
+Route::resource('mDiagnosticos', 'maestros\M_diagnosticoController');

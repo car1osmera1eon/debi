@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\maestros\Maestros;
+namespace App\Repositories\maestros;
 
-use App\Models\maestros\Maestros\M_diagnostico;
+use App\Models\maestros\M_diagnostico;
 use App\Repositories\BaseRepository;
 
 /**

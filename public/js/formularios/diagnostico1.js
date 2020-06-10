@@ -1,6 +1,12 @@
 $( document ).ready(function() {
 
-    $("#form_odon_id").select2();
+    $("#add_tipo_diag_id").select2({
+        dropdownParent: $('#modal-agregar-d1')
+    });
+
+    $("#tipo_diag_id").select2({
+        dropdownParent: $('#modal-edit-d1')
+    });
 
     console.log( url_diagnosticos );
     $('#table_diagnostico').DataTable({
