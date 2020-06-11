@@ -12,8 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $empresa            = \App\Models\maestros\M_clinica::find(1);
+    $procedimientos     = \App\Models\maestros\M_procedimiento::limit(4)->get();
+    $allprocedimientos  = \App\Models\maestros\M_procedimiento::limit(6)->get();
+
+    return view('sitio/index', compact('empresa','procedimientos','allprocedimientos'));
+})->name('index');
 
 //Route::resource('products', 'ProductController');
 //Route::post('/products/consulta', 'ProductController@consulta');
