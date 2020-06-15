@@ -1,3 +1,4 @@
+{{-- https://colorlib.com/preview/#lifecoaching --}}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,9 +36,21 @@
 								<div class="col-md-6 d-flex justify-content-md-end">
 									<div class="social-media">
 						    		<p class="mb-0 d-flex">
-						    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-						    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-						    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+										@if($sitio->facebook!=null)
+											<a href="{{$sitio->facebook}}" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+										@endif
+										@if($sitio->twitter!=null)
+											<a href="{{$sitio->twitter}}" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+										@endif
+										@if($sitio->twitter!=null)
+											<a href="{{$sitio->instagram}}" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+										@endif
+										@if($sitio->whatsapp!=null)
+											<a href="{{$sitio->whatsapp}}" class="d-flex align-items-center justify-content-center"><span class="fa fa-whatsapp"><i class="sr-only">Whatsapp</i></span></a>
+										@endif
+										@if($sitio->telegram!=null)
+											<a href="{{$sitio->telegram}}" class="d-flex align-items-center justify-content-center"><span class="fa fa-telegram"><i class="sr-only">Telegram</i></span></a>
+										@endif
 						    			{{-- <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a> --}}
 						    		</p>
 					        </div>
@@ -50,22 +63,22 @@
 		</div>
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	    	<a class="navbar-brand" href="index.html">{{ $empresa->nombrecomercial }}</a>
-	    	<form action="#" class="searchform order-sm-start order-lg-last">
-          {{-- <div class="form-group d-flex">
+	    	<a class="navbar-brand" href="{{route('index')}}">{{ $empresa->nombrecomercial }}</a>
+	    	{{-- <form action="#" class="searchform order-sm-start order-lg-last">
+          <div class="form-group d-flex">
             <input type="text" class="form-control pl-3" placeholder="Search">
             <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
-          </div> --}}
-        </form>
+          </div>
+        </form> --}}
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="fa fa-bars"></span> Menu
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav m-auto">
 	        	<li class="nav-item active"><a href="{{route('index')}}" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="about.html" class="nav-link">Nosotros</a></li>
-	        	<li class="nav-item"><a href="services.html" class="nav-link">Servicios</a></li>
-				<li class="nav-item"><a href="contact.html" class="nav-link">Contacto</a></li>
+	        	<li class="nav-item"><a href="{{ url('nosotros') }}" class="nav-link">Nosotros</a></li>
+	        	<li class="nav-item"><a href="{{ url('servicios') }}" class="nav-link">Servicios</a></li>
+				<li class="nav-item"><a href="{{ url('contacto') }}" class="nav-link">Contacto</a></li>
 				<li class="nav-item"><a href="{{ url('/register') }}" class="nav-link">Registrarse</a></li>
 				<li class="nav-item"><a href="{{ url('/login') }}" class="nav-link">Entrar</a></li>
 	        </ul>
@@ -75,54 +88,24 @@
     <!-- END nav -->
     <div class="hero-wrap">
 	    <div class="home-slider owl-carousel">
-
-		<div class="slider-item" style="background-image:url({{ URL::asset('site/images/bg_1.jpg') }});">
+		@foreach ($banner as $value)
+		<div class="slider-item" style="background-image:url({{ URL::asset($value->image) }});">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row no-gutters slider-text align-items-center justify-content-center">
 					<div class="col-md-8 ftco-animate">
 						<div class="text w-100 text-center">
-							<h2>Nuestro Negocio</h2>
-						<h1 class="mb-4">Nosotros ayudamos a su negocio a crecer</h1>
+							{{-- <h2>Nuestro Negocio</h2> --}}
+						<h1 class="mb-4">{{$value->descripcion}}</h1>
 						<p><a href="#" class="btn btn-white">Agendar Cita</a></p>
 					</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-	      <div class="slider-item" style="background-image:url({{ URL::asset('site/images/bg_2.jpg') }});">
-	      	<div class="overlay"></div>
-	        <div class="container">
-	          <div class="row no-gutters slider-text align-items-center justify-content-center">
-		          <div class="col-md-8 ftco-animate">
-		          	<div class="text w-100 text-center">
-		          		<h2>We Support Business</h2>
-			            <h1 class="mb-4">The Best Business Support</h1>
-			            <p><a href="#" class="btn btn-white">Agendar Cita</a></p>
-		            </div>
-		          </div>
-		        </div>
-	        </div>
-	      </div>
-
-	      <div class="slider-item" style="background-image:url({{ URL::asset('site/images/bg_3.jpg') }});">
-	      	<div class="overlay"></div>
-	        <div class="container">
-	          <div class="row no-gutters slider-text align-items-center justify-content-center">
-		          <div class="col-md-8 ftco-animate">
-		          	<div class="text w-100 text-center">
-		          		<h2>We Give Advice</h2>
-			            <h1 class="mb-4">Expert Financial Advice</h1>
-			            <p><a href="#" class="btn btn-white">Agendar Cita</a></p>
-		            </div>
-		          </div>
-		        </div>
-	        </div>
-		  </div>
-
+		@endforeach
 	    </div>
-	  </div>
+	</div>
 
 	<section class="intro py-5 bg-light">
 		<div class="container">
@@ -180,27 +163,6 @@
     					</div>
 					</div>
 					@endforeach 
-    				{{-- <div class="services-2 w-100 d-flex">
-    					<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-check"></span></div>
-    					<div class="text pl-4">
-    						<h4>Accounting Advisor</h4>
-    						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-    					</div>
-    				</div> --}}
-    				{{-- <div class="services-2 w-100 d-flex">
-    					<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-check"></span></div>
-    					<div class="text pl-4">
-    						<h4>General Consultancy</h4>
-    						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-    					</div>
-    				</div> --}}
-    				{{-- <div class="services-2 w-100 d-flex">
-    					<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-check"></span></div>
-    					<div class="text pl-4">
-    						<h4>Structured Assestment</h4>
-    						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-    					</div>
-    				</div> --}}
 	        </div>
         </div>
     	</div>
@@ -310,7 +272,7 @@
         <div class="row justify-content-center pb-5 mb-3">
           <div class="col-md-7 heading-section heading-section-white text-center ftco-animate">
           	<span class="subheading">Testimonios</span>
-            <h2>Clientes Felices</h2>
+            <h2>Clientes Satisfechos</h2>
           </div>
         </div>
         <div class="row ftco-animate">
@@ -640,15 +602,30 @@
 								<h2 class="footer-heading">Redes Sociales</h2>
 								<p>Puedes encontrarnos tambien en nuestras redes sociales.</p>
 								<ul class="ftco-footer-social p-0">
-								<li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
-								<li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
-								<li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
+									@if($sitio->facebook!=null)
+										<li class="ftco-animate"><a href="{{$sitio->facebook}}" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
+									@endif
+									@if($sitio->twitter!=null)
+										<li class="ftco-animate"><a href="{{$sitio->twitter}}" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
+									@endif
+									@if($sitio->twitter!=null)
+										<li class="ftco-animate"><a href="{{$sitio->instagram}}" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
+									@endif
 								</ul>
 							</div>
 							<div class="col-md-8">
 								<div class="row justify-content-center">
 									<div class="col-md-12 col-lg-10">
 										<div class="row">
+											<div class="col-md-4 mb-md-0 mb-4">
+												{{-- <h2 class="footer-heading">Recursos</h2>
+												<ul class="list-unstyled">
+													<li><a href="#" class="py-1 d-block">Security</a></li>
+													<li><a href="#" class="py-1 d-block">Global</a></li>
+													<li><a href="#" class="py-1 d-block">Charts</a></li>
+													<li><a href="#" class="py-1 d-block">Privacy</a></li>
+												</ul> --}}
+											</div>
 											<div class="col-md-4 mb-md-0 mb-4">
 												<h2 class="footer-heading">Servicios</h2>
 												<ul class="list-unstyled">
@@ -660,21 +637,12 @@
 											<div class="col-md-4 mb-md-0 mb-4">
 												<h2 class="footer-heading">Descubre</h2>
 												<ul class="list-unstyled">
-													<li><a href="#" class="py-1 d-block">About us</a></li>
-													<li><a href="#" class="py-1 d-block">Contract us</a></li>
-													<li><a href="#" class="py-1 d-block">Terms &amp; Conditions</a></li>
-													<li><a href="#" class="py-1 d-block">Policies</a></li>
+													<li><a href="{{ url('nosotros') }}" class="py-1 d-block">Nosotros</a></li>
+													<li><a href="{{ url('servicios') }}" class="py-1 d-block">Servicios</a></li>
+													<li><a href="{{ url('contacto') }}" class="py-1 d-block">Contacto</a></li>
 												</ul>
 											</div>
-											<div class="col-md-4 mb-md-0 mb-4">
-												<h2 class="footer-heading">Recursos</h2>
-												<ul class="list-unstyled">
-													<li><a href="#" class="py-1 d-block">Security</a></li>
-													<li><a href="#" class="py-1 d-block">Global</a></li>
-													<li><a href="#" class="py-1 d-block">Charts</a></li>
-													<li><a href="#" class="py-1 d-block">Privacy</a></li>
-												</ul>
-											</div>
+											
 										</div>
 									</div>
 								</div>

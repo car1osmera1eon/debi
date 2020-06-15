@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\maestros\Maestros;
+namespace App\Http\Requests\Maestros;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\maestros\Maestros\M_diagnostico;
+use App\Models\Maestros\M_banner;
 
-class UpdateM_diagnosticoRequest extends FormRequest
+class UpdateM_bannerRequest extends FormRequest
 {
 
     /**
@@ -25,7 +25,7 @@ class UpdateM_diagnosticoRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = M_diagnostico::$rules;
+        $rules = M_banner::$rules;
         
         return $rules;
     }

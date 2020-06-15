@@ -15,15 +15,40 @@ Route::get('/', function () {
     $empresa            = \App\Models\maestros\M_clinica::find(1);
     $procedimientos     = \App\Models\maestros\M_procedimiento::limit(4)->get();
     $allprocedimientos  = \App\Models\maestros\M_procedimiento::limit(6)->get();
-
-    return view('sitio/index', compact('empresa','procedimientos','allprocedimientos'));
+    $sitio              = \App\Models\maestros\M_sitio::first();
+    $banner             = \App\Models\maestros\M_banner::all();
+    return view('sitio/index', compact('empresa','procedimientos','allprocedimientos','sitio','banner'));
 })->name('index');
 
+
+Route::get('/nosotros', function () {
+    $empresa            = \App\Models\maestros\M_clinica::find(1);
+    $allprocedimientos  = \App\Models\maestros\M_procedimiento::limit(6)->get();
+    $sitio              = \App\Models\maestros\M_sitio::first();
+    return view('sitio/nosotros', compact('empresa','allprocedimientos','sitio'));
+})->name('nosotros');
+
+
+Route::get('/servicios', function () {
+    $empresa            = \App\Models\maestros\M_clinica::find(1);
+    $allprocedimientos  = \App\Models\maestros\M_procedimiento::limit(6)->get();
+    $sitio              = \App\Models\maestros\M_sitio::first();
+    return view('sitio/servicios', compact('empresa','allprocedimientos','sitio'));
+})->name('servicios');
+
+
+Route::get('/contacto', function () {
+    $empresa            = \App\Models\maestros\M_clinica::find(1);
+    $allprocedimientos  = \App\Models\maestros\M_procedimiento::limit(6)->get();
+    $sitio              = \App\Models\maestros\M_sitio::first();
+    return view('sitio/contacto', compact('empresa','allprocedimientos','sitio'));
+})->name('contacto');
 //Route::resource('products', 'ProductController');
 //Route::post('/products/consulta', 'ProductController@consulta');
 //Route::post('/products/store', 'ProductController@store');
 //Route::post('/products/remove', 'ProductController@remove');
 Auth::routes(); 
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 

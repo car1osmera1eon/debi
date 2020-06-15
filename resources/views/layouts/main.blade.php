@@ -590,7 +590,7 @@
                                             </a>
                                         </li>
                                         <li class="col-xs-3" data-content="Sitio web">
-                                            <a class="shortcut-grid" href="#">
+                                            <a class="shortcut-grid" href="{{route('index')}}">
                                                 <div class="icon-wrap icon-wrap-sm icon-circle bg-primary">
                                                 <i class="psi-internet-explorer"></i>
                                                 </div>

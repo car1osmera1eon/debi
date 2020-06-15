@@ -43,3 +43,9 @@ Route::resource('mCategorias', 'maestros\M_categoriaController');
 Route::resource('formOdonDiagPacis', 'maestros\FormOdonDiagPaciController');
 
 Route::resource('mDiagnosticos', 'maestros\M_diagnosticoController');
+
+Route::resource('mSitios', 'Maestros\M_sitioController');
+
+Route::resource('mBanners', 'Maestros\M_bannerController');
+
+Route::resource('mTestimonios', 'Maestros\M_testimonioController');

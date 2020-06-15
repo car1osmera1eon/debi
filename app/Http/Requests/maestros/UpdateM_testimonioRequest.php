@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\maestros\Maestros;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\maestros\Maestros\M_diagnostico;
+use App\Models\M_testimonio;
 
-class CreateM_diagnosticoRequest extends FormRequest
+class UpdateM_testimonioRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,8 @@ class CreateM_diagnosticoRequest extends FormRequest
      */
     public function rules()
     {
-        return M_diagnostico::$rules;
+        $rules = M_testimonio::$rules;
+        
+        return $rules;
     }
 }

@@ -39,7 +39,7 @@ return [
 
         "tests"             => base_path("tests/"),
 
-        "views"             => resource_path("views/"),
+        "views"             => resource_path("views/$path"),
 
         "schema_files"      => resource_path("model_schemas/"),
 
@@ -65,17 +65,17 @@ return [
 
     "namespace" => [
 
-        "model"             => "App\Models\maestros",
+        "model"             => "App\Models",
 
-        "datatables"        => "App\DataTables\maestros",
+        "datatables"        => "App\DataTables",
 
-        "repository"        => "App\Repositories\maestros",
+        "repository"        => "App\Repositories",
 
-        "controller"        => "App\Http\Controllers\maestros",
+        "controller"        => "App\Http\Controllers",
 
         "api_controller"    => "App\Http\Controllers\API",
 
-        "request"           => "App\Http\Requests\maestros",
+        "request"           => "App\Http\Requests",
 
         "api_request"       => "App\Http\Requests\API",
 
@@ -148,7 +148,7 @@ return [
 
         "route" => "",  // using admin will create route("admin.?.index") type routes
 
-        "path" => "$path",
+        "path" => "",
 
         "view" => "",  // using backend will create return view("backend.?.index") type the backend views directory
 
