@@ -9,6 +9,7 @@ use App\Models\perfiles\Sistema;
 use App\Models\Usuario;
 use App\Models\perfiles\Perfil_usuario;
 use App\Models\maestros\M_medico;
+use App\Models\maestros\M_clinica;
 use App\Models\agenda\Agenda;
 
 class HomeController extends Controller
@@ -31,6 +32,8 @@ class HomeController extends Controller
     public function index()
     {
         $sistema = Sistema::find(1);
+        $clinica = M_clinica::find(1);
+        Session::put('logo_sistema', $clinica->logo); 
         Session::put('nom_sistema', $sistema->nom_sistema); 
         Session::put('nom_sistema_des', $sistema->nom_sistema ." | " . $sistema->des_sistema);
         $medicos = M_medico::all();

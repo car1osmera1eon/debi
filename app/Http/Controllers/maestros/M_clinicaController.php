@@ -72,6 +72,11 @@ class M_clinicaController extends AppBaseController
             $mClinica->fill(['logo'=>asset($path)])->save();
         }
 
+        if($request->file('logo_inicio')){
+            $path = Storage::disk('public')->put('photos_clinica',$request->file('logo_inicio'));
+            $mClinica->fill(['logo_inicio'=>asset($path)])->save();
+        }
+
         Flash::success('Clinica saved successfully.');
 
         return redirect(route('mClinicas.index'));
@@ -144,6 +149,12 @@ class M_clinicaController extends AppBaseController
         if($request->file('logo')){
             $path = Storage::disk('public')->put('photos_clinica',$request->file('logo'));
             $mClinica->fill(['logo'=>asset($path)])->save();
+        }
+
+
+        if($request->file('logo_inicio')){
+            $path = Storage::disk('public')->put('photos_clinica',$request->file('logo_inicio'));
+            $mClinica->fill(['logo_inicio'=>asset($path)])->save();
         }
 
         Flash::success('M Clinica updated successfully.');

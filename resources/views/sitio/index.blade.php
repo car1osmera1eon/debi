@@ -278,51 +278,25 @@
         <div class="row ftco-animate">
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url({{ URL::asset('site/images/person_1.jpg') }})"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url({{ URL::asset('site/images/person_2.jpg') }})"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url({{ URL::asset('site/images/person_3.jpg') }})"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>  
+
+				@foreach ($testimonios as $value)
+				<div class="item">
+					<div class="testimony-wrap py-4">
+						<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+					<div class="text">
+						<p class="mb-4">{{ $value->testimonio }}</p>
+						<div class="d-flex align-items-center">
+							<div class="user-img" style="background-image: url({{ URL::asset($value->image) }})"></div>
+							<div class="pl-3">
+								<p class="name">{{ $value->paciente->primernombre }} {{ $value->paciente->primerapellido }}</p>
+								{{-- <span class="position">Marketing Manager</span> --}}
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+				@endforeach
+				  
             </div>
           </div>
         </div>

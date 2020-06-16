@@ -7,9 +7,12 @@ use App\Http\Requests\Maestros\UpdateM_testimonioRequest;
 use App\Repositories\Maestros\M_testimonioRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Flash;
 use Response;
 use App\Menu; 
+use App\Models\maestros\M_paciente; 
 
 class M_testimonioController extends AppBaseController
 {
@@ -44,7 +47,13 @@ class M_testimonioController extends AppBaseController
      */
     public function create()
     {
-        return view('maestros.m_testimonios.create');
+        $pacientes      = array(); 
+        $pacientesall   = M_paciente::all();
+        foreach($pacientesall as $pac){
+            $paciente[$pac->id]         = $pac->primernombre . " " . $pac->primerapellido; 
+            $pacientes  = $paciente;
+        }  
+        return view('maestros.m_testimonios.create',compact('pacientes'));
     }
 
     /**
@@ -58,7 +67,14 @@ class M_testimonioController extends AppBaseController
     {
         $input = $request->all();
 
+        $input['clinica_id']    = 1;
+
         $mTestimonio = $this->mTestimonioRepository->create($input);
+
+        if($request->file('image')){
+            $path = Storage::disk('public')->put('photos',$request->file('image'));
+            $mTestimonio->fill(['image'=>asset($path)])->save();
+        }
 
         Flash::success('M Testimonio saved successfully.');
 
@@ -96,13 +112,20 @@ class M_testimonioController extends AppBaseController
     {
         $mTestimonio = $this->mTestimonioRepository->find($id);
 
+        $pacientes      = array(); 
+        $pacientesall   = M_paciente::all();
+        foreach($pacientesall as $pac){
+            $paciente[$pac->id]         = $pac->primernombre . " " . $pac->primerapellido; 
+            $pacientes  = $paciente;
+        }  
+
         if (empty($mTestimonio)) {
             Flash::error('M Testimonio not found');
 
             return redirect(route('mTestimonios.index'));
         }
 
-        return view('maestros.m_testimonios.edit')->with('mTestimonio', $mTestimonio);
+        return view('maestros.m_testimonios.edit', compact('mTestimonio', 'pacientes'));
     }
 
     /**
@@ -124,6 +147,11 @@ class M_testimonioController extends AppBaseController
         }
 
         $mTestimonio = $this->mTestimonioRepository->update($request->all(), $id);
+
+        if($request->file('image')){
+            $path = Storage::disk('public')->put('photos',$request->file('image'));
+            $mTestimonio->fill(['image'=>asset($path)])->save();
+        }
 
         Flash::success('M Testimonio updated successfully.');
 

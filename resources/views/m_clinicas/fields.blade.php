@@ -58,6 +58,11 @@
     {!! Form::file('logo') !!}
 </div>
 
+<!-- Logo Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('logo_inicio', 'Logo Incio:') !!}
+    {!! Form::file('logo_inicio') !!}
+</div>
 <!-- Estado Field -->
 {{-- <div class="form-group col-sm-6">
     {!! Form::label('estado', 'Estado:') !!}

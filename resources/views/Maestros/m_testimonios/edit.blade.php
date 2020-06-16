@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($mTestimonio, ['route' => ['mTestimonios.update', $mTestimonio->id], 'method' => 'patch']) !!}
+                   {!! Form::model($mTestimonio, ['route' => ['mTestimonios.update', $mTestimonio->id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
 
                         @include('maestros.m_testimonios.fields')
 

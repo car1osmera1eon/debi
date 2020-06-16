@@ -17,7 +17,8 @@ Route::get('/', function () {
     $allprocedimientos  = \App\Models\maestros\M_procedimiento::limit(6)->get();
     $sitio              = \App\Models\maestros\M_sitio::first();
     $banner             = \App\Models\maestros\M_banner::all();
-    return view('sitio/index', compact('empresa','procedimientos','allprocedimientos','sitio','banner'));
+    $testimonios        = \App\Models\maestros\M_testimonio::all();
+    return view('sitio/index', compact('empresa','procedimientos','allprocedimientos','sitio','banner','testimonios'));
 })->name('index');
 
 
@@ -25,7 +26,8 @@ Route::get('/nosotros', function () {
     $empresa            = \App\Models\maestros\M_clinica::find(1);
     $allprocedimientos  = \App\Models\maestros\M_procedimiento::limit(6)->get();
     $sitio              = \App\Models\maestros\M_sitio::first();
-    return view('sitio/nosotros', compact('empresa','allprocedimientos','sitio'));
+    $testimonios        = \App\Models\maestros\M_testimonio::all();
+    return view('sitio/nosotros', compact('empresa','allprocedimientos','sitio','testimonios'));
 })->name('nosotros');
 
 

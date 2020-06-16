@@ -46,7 +46,8 @@ class M_clinica extends Model
         'email',
         'telefono1',
         'telefono2',
-        'logo'
+        'logo',
+        'logo_inicio'
     ];
 
     /**
@@ -65,7 +66,8 @@ class M_clinica extends Model
         'email' => 'string',
         'telefono1' => 'string',
         'telefono2' => 'string',
-        'logo' => 'string'
+        'logo' => 'string',
+        'logo_inicio' => 'string'
     ];
 
     /**

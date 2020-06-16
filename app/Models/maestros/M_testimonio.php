@@ -55,11 +55,19 @@ class M_testimonio extends Model
      * @var array
      */
     public static $rules = [
-        'clinica_id' => 'required',
         'paciente_id' => 'required',
         'testimonio' => 'required',
         'image' => 'required',
     ];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function paciente()
+    {
+        return $this->belongsTo(\App\Models\maestros\M_paciente::class, 'paciente_id');
+    }
 
     
 }

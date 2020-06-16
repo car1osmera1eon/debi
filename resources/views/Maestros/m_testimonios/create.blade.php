@@ -11,7 +11,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'mTestimonios.store']) !!}
+                    {!! Form::open(['route' => 'mTestimonios.store', 'enctype' => 'multipart/form-data']) !!}
 
                         @include('maestros.m_testimonios.fields')
 

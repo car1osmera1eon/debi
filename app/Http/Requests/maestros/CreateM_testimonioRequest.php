@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Maestros;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\M_testimonio;
+use App\Models\Maestros\M_testimonio;
 
 class CreateM_testimonioRequest extends FormRequest
 {

@@ -96,7 +96,7 @@
                 <!--================================-->
                 <div class="navbar-header">
                     <a href="index.html" class="navbar-brand">
-                        <img src="{{ URL::asset('assets/img/logo1.png') }}" alt="Logo Empresa" class="brand-icon">
+                        <img src="{{ URL::asset(Session::get('logo_sistema')) }}" alt="Logo Empresa" class="brand-icon">
                         <div class="brand-title">
                             <span class="brand-text">{{ Session::get('nom_sistema')}}</span>
                         </div>
