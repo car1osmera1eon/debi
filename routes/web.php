@@ -71,3 +71,8 @@ Route::resource('perfilaccions', 'Perfiles\PerfilaccionController');
 Route::get('perfilaccions/submodulos/{id}', 'Perfiles\PerfilaccionController@getSubModulos');
 
 Route::get('perfilaccions/submodulos2/{id}', 'Perfiles\PerfilaccionController@getSubModulos2');
+
+// SITIO / AGENDA
+
+Route::match(['get', 'post'], 'sitio/agenda/', 'SitioController@agenda')->name('sitio.agenda'); 
+Route::match(['get', 'post'], 'sitio/agenda/data', 'SitioController@getTodoAgenda')->name('sitio.agenda.data'); 

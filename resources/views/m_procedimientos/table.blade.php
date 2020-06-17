@@ -3,7 +3,9 @@
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Observacion</th>
+                <th>Observaci&oacute;n</th>
+                <th>Tiempo<br><small>en minutos</small></th>
+                <th>Costo</th>
                 {{-- <th>Estado</th> --}}
                 <th colspan="3">Action</th>
             </tr>
@@ -12,7 +14,9 @@
         @foreach($mProcedimientos as $mProcedimiento)
             <tr>
                 <td>{{ $mProcedimiento->nombre }}</td>
-            <td>{{ $mProcedimiento->observacion }}</td>
+                <td>{{ $mProcedimiento->observacion }}</td>
+                <td>{{ $mProcedimiento->tiempo }}</td>
+                <td>{{ $mProcedimiento->costo }}</td>
             {{-- <td>{{ $mProcedimiento->estado }}</td> --}}
                 <td>
                     {!! Form::open(['route' => ['mProcedimientos.destroy', $mProcedimiento->id], 'method' => 'delete']) !!}

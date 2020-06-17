@@ -31,6 +31,8 @@ class M_procedimiento extends Model
     public $fillable = [
         'nombre',
         'observacion',
+        'tiempo',
+        'costo',
         'estado'
     ];
 
@@ -40,10 +42,12 @@ class M_procedimiento extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'nombre' => 'string',
-        'observacion' => 'string',
-        'estado' => 'boolean'
+        'id'            => 'integer',
+        'nombre'        => 'string',
+        'observacion'   => 'string',
+        'tiempo'        => 'string',
+        'costo'         => 'float',
+        'estado'        => 'boolean'
     ];
 
     /**
@@ -52,7 +56,9 @@ class M_procedimiento extends Model
      * @var array
      */
     public static $rules = [
-        'nombre' => 'required'
+        'nombre'    => 'required',
+        'tiempo'    => 'required',
+        'costo'     => 'required',
     ];
 
     

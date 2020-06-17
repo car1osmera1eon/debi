@@ -10,6 +10,17 @@
     {!! Form::textarea('observacion', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Tiempo Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    {!! Form::label('tiempo', 'Tiempo:') !!}
+    {!! Form::text('tiempo', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Costo Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    {!! Form::label('costo', 'Costo:') !!}
+    {!! Form::text('costo', null, ['class' => 'form-control']) !!}
+</div>
 <!-- Estado Field -->
 {{-- <div class="form-group col-sm-6">
     {!! Form::label('estado', 'Estado:') !!}
