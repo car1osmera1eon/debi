@@ -4,6 +4,7 @@ namespace App\Models\agenda;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Repositories\agenda\AgendaRepository;
 
 /**
  * Class Agenda
@@ -204,13 +205,20 @@ class Agenda extends Model
         return $this->belongsTo(\App\User::class, 'usuariomod_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    
+    public function agendaMedico($id){ 
+        $data       = array();    $evento = array();
+        $agenda     = $this->agendaRepository->all(['medico_id'=>$id]); 
+        
+        foreach($agenda as $row){
+            $evento['id']     = $row->id;             
+            $evento['title']  = "Procedimiento: ".$row->procedimiento->nombre.", Paciente: ".$row->paciente->primernombre." ".$row->paciente->primerapellido;     
+            $evento['start']  = date('Y-m-d',strtotime($row->fechaini)).' '.$row->horaini;       
+            $evento['end']    = date('Y-m-d',strtotime($row->fechafin)).' '.$row->horafin;  
+            // $evento['url']    = route('agendas.edit',[$row->id]);  
+            
+            $data[] = $evento;    
+        }
+        return response()->json($data); 
+    }
 
-    // public function getTotalLikesAttribute()
-    // {
-    //     return $this->hasMany(App\Models\maestros\M_medico::class)->where->where('medico_id',$medico->id)->whereYear('fechaini',date('Y'))->where('estado',1)->count(); 
-    // }
 }

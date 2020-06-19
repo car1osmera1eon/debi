@@ -34,15 +34,24 @@ class SitioController extends Controller
         
     }
 
-    public function agenda()
+    public function agenda(Request $request)
     {
+        // dd($request->presentacion);
+        $presentacion       = 'agendaWeek';
         $empresa            = \App\Models\maestros\M_clinica::find(1);
         $sitio              = \App\Models\maestros\M_sitio::first();
         $medicos            = \App\Models\maestros\M_medico::get();
         $allprocedimientos  = \App\Models\maestros\M_procedimiento::limit(6)->get();
-        $medico             = \App\Models\maestros\M_medico::find(1);
-
-        return view('sitio.agenda', compact('empresa','sitio','allprocedimientos','medicos','medico'));
+        if(isset($request->medico_id)){ 
+            $medico         = \App\Models\maestros\M_medico::where('id', $request->medico_id)->first();
+            $medico_id      = $request->medico_id;
+            $presentacion   = $request->presentacion;
+        }else{
+            $medico         = \App\Models\maestros\M_medico::find(1);
+            $medico_id      = 1;
+        }
+            
+        return view('sitio.agenda', compact('empresa','sitio','allprocedimientos','medicos','medico','medico_id','presentacion'));
     }
 
     public function getTodoAgenda()

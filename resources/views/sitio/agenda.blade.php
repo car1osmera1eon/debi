@@ -107,7 +107,7 @@
 	    </div>
 	  </nav>
     <!-- END nav -->
-
+	{!! Form::open(['route' => 'sitio.agenda', 'id' => 'frmagenda', 'name' => 'frmagenda']) !!}
 	<section class="intro py-5 bg-light">
 		<div class="container">
 			<div class="row">
@@ -121,11 +121,12 @@
                 <div> --}}
                 <div class="col-sm-4 col-md-3">
                     <div class="panel pos-rel">
-                        <select class="form-control" id="medicos" name="medicos">
+                        <select class="form-control" id="medico_id" name="medico_id" onchange="cambioMedico()">
                             @foreach($medicos as $value)
-                            <option value="{{ $value->id }}">{{ $value->usuario->name }}</option>
+                            <option value="{{ $value->id }}" @if(isset($medico_id) and $medico_id == $value->id) selected @endif >{{ $value->usuario->name }}</option>
                             @endforeach
-                        </select>
+						</select>
+						<input type="hidden" name="presentacion" id="presentacion" value="" />
                     </div>
                     <!-- Contact Widget -->
                     <!---------------------------------->
@@ -153,6 +154,7 @@
 			</div>
 		</div>	
 	</section>
+	{!! Form::close() !!}
    	
 
     <footer class="footer">
@@ -285,6 +287,11 @@
 </html>
 <script>
     var token               =   "{{ csrf_token() }}";
-    var url_todoagenda      =   "{{route('sitio.agenda.data')}}";
+	var medico_id      		=   "{{$medico_id}}";
+	var presentacion      	=   "{{$presentacion}}";
+	var url_todoagenda      =   "{{route('sitio.agenda.data')}}";
+	var url_agendamedico    =   "{{route('agendaMedico',[$medico_id])}}";	
+	var inicio_atencion		=	"{{ $empresa->inicio_atencion }}";
+	var fin_atencion		=	"{{ $empresa->fin_atencion }}";
 </script>
 <script src="{{ URL('js/sitio/agenda.js') }}"defer></script>
