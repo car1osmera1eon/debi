@@ -213,11 +213,11 @@ class AgendaController extends AppBaseController
         if ($id==0) {
             $id = Auth::user()->id;
         }
+        $bussinesHour = array();
         $horario    = HorarioMedico::where('medico_id', '=', $id)
         ->where('tipo', '=', 1)
         ->select()
         ->get();
-        $bussinesHour = array();
         foreach($horario as $row){
             $hours['dow']   = $row->ndia;
             $hours['start'] = "$row->horaini";
@@ -234,8 +234,9 @@ class AgendaController extends AppBaseController
         } 
         $string .= "]";
         $medico = M_medico::find($id);
+        // $bussinesHour   = Agenda::horarioLaboralMedico($id);
         return view('agendas.agenda', ['medico_id'=>$id, 'tipo'=>$tipo, 'dia'=>date('m/d/Y'), 'horario'=>$horario, 
-        'bussinesHour'=>json_encode($bussinesHour), 'string' => utf8_encode($string), 'medico'=>$medico]);
+        'bussinesHour'=>$bussinesHour, 'string' => utf8_encode($string), 'medico'=>$medico]);
     }
 
     public function agendaDia(){
@@ -263,8 +264,10 @@ class AgendaController extends AppBaseController
         } 
         $string .= "]";
         $medico = M_medico::find($id);
+
+        // $bussinesHour   = Agenda::horarioLaboralMedico($id);
         return view('agendas.agenda', ['medico_id'=>$id, 'tipo'=>$tipo, 'dia'=>date('m/d/Y'), 'horario'=>$horario, 
-        'bussinesHour'=>json_encode($bussinesHour), 'string' => utf8_encode($string), 'medico'=>$medico]);
+        'bussinesHour'=>$bussinesHour, 'string' => utf8_encode($string), 'medico'=>$medico]);
     }
     
     public function agendaMedico($id){ 

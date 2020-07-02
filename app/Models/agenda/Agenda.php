@@ -205,9 +205,11 @@ class Agenda extends Model
         return $this->belongsTo(\App\User::class, 'usuariomod_id');
     }
 
-    public function agendaMedico($id){ 
+    public function agendaMedico($id,$desde="",$hasta=""){ 
+        if($desde==""){$desde=date('Y')."01-01";}
+        if($hasta==""){$hasta=date('Y')."12-31";}
         $data       = array();    $evento = array();
-        $agenda     = $this->agendaRepository->all(['medico_id'=>$id]); 
+        $agenda     = $this->agendaRepository->all(['medico_id'=>$id, 'fechaini'=>$desde, 'fechafin'=>$hasta]); 
         
         foreach($agenda as $row){
             $evento['id']     = $row->id;             
@@ -218,7 +220,36 @@ class Agenda extends Model
             
             $data[] = $evento;    
         }
+        // if($desde!=""){
+        //     $evento['title']        = "No Disponible";
+        //     $evento['start']        = date('Y')."01-01";
+        //     $evento['end']          = $desde;
+        //     $evento['rendering']    = 'background';
+        //     $evento['end']          = '#ff9f89';
+        // }
+        // $data[] = $evento;
+
+
         return response()->json($data); 
+    }
+
+    public static function horarioLaboralMedico($id){
+       $bussinesHour = array();
+        $horario    = HorarioMedico::where('medico_id', '=', $id)
+        ->where('tipo', '=', 1)
+        ->select()
+        ->get();
+        
+        $string = "[";
+        foreach($horario as $row){
+            $string .= "{";
+            $string .= "dow: [$row->ndia], "; 
+            $string .= "start: `$row->horaini`, "; 
+            $string .= "end:  `$row->horafin` "; 
+            $string .= "},";
+        } 
+        $string .= "]"; 
+        return $string;
     }
 
 }

@@ -45,10 +45,17 @@ Route::get('/contacto', function () {
     $sitio              = \App\Models\maestros\M_sitio::first();
     return view('sitio/contacto', compact('empresa','allprocedimientos','sitio'));
 })->name('contacto');
-//Route::resource('products', 'ProductController');
-//Route::post('/products/consulta', 'ProductController@consulta');
-//Route::post('/products/store', 'ProductController@store');
-//Route::post('/products/remove', 'ProductController@remove');
+
+Route::match(['get', 'post'], 'sitio/consulta/agenda', 'SitioController@consultaAgenda')->name('sitio.consulta.agenda'); 
+
+// Route::get('/consulta/sitio', function () {
+//     $empresa            = \App\Models\maestros\M_clinica::find(1);
+//     $allprocedimientos  = \App\Models\maestros\M_procedimiento::limit(6)->get();
+//     $sitio              = \App\Models\maestros\M_sitio::first();
+//     return view('sitio/iframe', compact('empresa','allprocedimientos','sitio'));
+// })->name('sitio.consulta.agenda');
+
+
 Auth::routes(); 
 
 

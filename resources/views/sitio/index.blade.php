@@ -82,7 +82,7 @@
 				@if(!isset(Auth::user()->name))
 					<li class="nav-item"><a href="{{ url('/register') }}" class="nav-link">Registrarse</a></li>
 				@else
-					<li class="nav-item"><a href="{{ url('/register') }}" class="nav-link">Agenda</a></li>
+					<li class="nav-item"><a href="{{route('sitio.agenda')}}" class="nav-link">Agenda</a></li>
 				@endif
 				<li class="nav-item"><a href="{{ url('/login') }}" class="nav-link">Entrar</a></li>
 	        </ul>
@@ -139,7 +139,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="intro-box w-100">
-						<p class="mb-0"><a href="#" class="btn btn-primary">Agende con nosotros</a></p>
+						<p class="mb-0"><a href="{{route('sitio.agenda')}}" class="btn btn-primary">Agende con nosotros</a></p>
 					</div>
 				</div>
 			</div>

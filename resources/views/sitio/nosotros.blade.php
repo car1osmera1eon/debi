@@ -77,7 +77,11 @@
 	        	<li class="nav-item active"><a href="{{ url('nosotros') }}" class="nav-link">Nosotros</a></li>
 	        	<li class="nav-item"><a href="{{ url('servicios') }}" class="nav-link">Servicios</a></li>
             <li class="nav-item"><a href="{{ url('contacto') }}" class="nav-link">Contacto</a></li>
-            <li class="nav-item"><a href="{{ url('/register') }}" class="nav-link">Registrarse</a></li>
+            @if(!isset(Auth::user()->name))
+              <li class="nav-item"><a href="{{ url('/register') }}" class="nav-link">Registrarse</a></li>
+            @else
+              <li class="nav-item"><a href="{{route('sitio.agenda')}}" class="nav-link">Agenda</a></li>
+            @endif
             <li class="nav-item"><a href="{{ url('/login') }}" class="nav-link">Entrar</a></li>
 	        </ul>
 	      </div>
